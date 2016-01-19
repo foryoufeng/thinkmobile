@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>首页</title>
+    
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/shouye.css"/>
+   	<script src="js/mui.min.js"></script>
+   	<script src="js/common.js"></script>
+   	<script src="js/zepto.min.js"></script>
+   	<script src="js/baiduTemplate.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>   
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+		  <div class="mui-scroll">
+		  	<!--轮播图-->
+		  	<div class="mui-slider">
+	        	<div class="mui-slider-group mui-slider-loop mui-topPic" id="lunbotuId"></div>
+		        <script id="lunbotuHtml" type="text/html">
+		        	<%for(var n = 0;n < data.list.imgs.length;n++){%>
+		        		<div class="mui-slider-item">
+			                <a href="#">
+			                    <img src="images/shouye/shouye2_01.jpg" /><!--"images/shouye/shouye2_01.jpg"-->
+			                </a>
+			            </div>
+		        	<%}%>
+		        </script>
+		        <div class="mui-slider-indicator" id="circle"></div>
+		        	<script type="text/html" id="circleHtml">
+		        		<%for(var c=0;c<data.list.imgs.length;c++){%>
+		        			<div class="mui-indicator"></div>
+		        		<%}%>	
+		        	</script>
+		        
+		    </div>
+			 
+	
+	
+			<!--最新展示-->
+		  	<h3 id="mui-h3-title">最新展示</h3>
+		    <!--数据列表-->
+		    <div class="mui-card">
+		    	<ul class="mui-table-view mui-table-view-chevron" id="result" ></ul>
+		     
+		    	<script id="shouyeHtml" type="text/html">
+		    		<%for(var i = 0;i<3;i++){%>
+			    		<li class="mui-con-ul-li" id="<%=data.list.goods[i].goods_id%>">
+				        	<img src="<%=url%>/<%=data.list.goods[i].goods_thumb%>"/><!--<%=data.list.goods[i].goods_thumb%>-->
+				        	<div class="mui-info">
+				        		<h2 id="mui-title"><%=data.list.goods[i].goods_name%></h2>
+				        		<h4 id="mui-des"><%=data.list.goods[i].goods_desc%></h4>
+				        		<h5 id="mui-time"><%=data.list.goods[i].add_time%></h5>
+				        	</div>
+				       </li> 
+			    	<%}%>
+		    	</script>
+		    	
+		    	<script id="downLiHtmlId" type="text/html">
+		    		<%for(var j = startLen;j<len;j++){%>
+		    			<li class="mui-con-ul-li" id="<%=data.list.goods[j].goods_id%>">
+		    				<%=data.list.length%>
+				        	<img src="http://123.56.44.104:81/<%=data.list.goods[j].goods_thumb%>"/><!--<%=data.list.goods[i].goods_thumb%>-->
+				        	<div class="mui-info">
+				        		<h2 id="mui-title"><%=data.list.goods[j].goods_name%></h2>
+				        		<h4 id="mui-des"><%=data.list.goods[j].goods_desc%></h4>
+				        		<h5 id="mui-time"><%=data.list.goods[j].add_time%></h5>
+				        	</div>
+				        </li>
+		    		<%}%>
+		    	</script>
+			</div>
+		  </div>
+		</div>
+</body>
+<script type="text/javascript">
+	var pid = 1; //传递的参数p的值
+	index({p:pid},callbackFun);
+	function callbackFun(data)
+	{
+		if(data != 0)
+		{
+			//使用baidu.template命名空间
+			var bt=baidu.template;
+			
+			var lunbotu = bt('lunbotuHtml',{data:data});
+			var circle = bt('circleHtml',{data:data});
+			var url=HOST;
+			var html=bt('shouyeHtml',{data:data,url:url});
+			//渲染
+			document.getElementById("lunbotuId").innerHTML = lunbotu;
+			document.getElementById("circle").innerHTML = circle;
+			document.getElementById('result').innerHTML=html;
+			
+		}else{	
+			mui.toast("数据读取出现错误！");
+		}
+	}
+	
+	mui.init({
+		pullRefresh: 
+		{
+			container: '#pullrefresh',
+			down: {
+				callback: pulldownRefresh
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				contentnomore:"没有更多数据了",
+				callback: pullupRefresh
+			}
+		}
+	});
+	/**********商品详情页代码***********/
+	mui('#result').on('tap','li',function(){
+		var goods_id = this.getAttribute('id');
+		 //打开详情页面事件
+		console.log("首页goods_id::"+goods_id);
+		mui.openWindow({
+  			url:'goodsdetail.html',
+  		    id:'goodsdetail.html',
+  		    extras:{ 
+               "goods_id":goods_id
+            }
+  		});
+	});
+	/*********************/
+	/**
+	 * 下拉刷新逻辑实现
+	 * */
+	function pulldownRefresh()
+	{
+		setTimeout(function(){
+			/*请求数据*/				
+			Get(SERVERE,{p:1},function(data){
+			      //pid=2;
+			      var parent=$('#result');
+			      parent.html('');
+			      show(parent,data);
+		});	
+			/*下拉刷新执行完毕*/ 
+			mui("#pullrefresh").pullRefresh().endPulldownToRefresh();
+			mui('#pullrefresh').pullRefresh().refresh(true);
+			
+		},1500);
+	}
+	/**
+	 * 上拉继续加载
+	 */
+	function pullupRefresh()
+	{
+		setTimeout(function(){
+			++pid;
+			Get(SERVERE,{p:pid},function(data){
+			    //pid++;
+			    var parent=$('#result');
+			    show(parent,data);
+		   });
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+		},1500);
+	}
+	/**
+	 * 渲染模板
+	 * @param {Object} parent
+	 * @param {Object} data
+	 */
+	function show(parent,data){
+		if(parseInt(data.list.goods.length)==0){
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+		}
+		$.each(data.list.goods, function(i,datas) {
+				var url=HOST+datas.goods_thumb
+				var html='<li class="mui-con-ul-li" id="' +datas.goods_id+ '">'+
+				        	'<img src="'+url+'"/>'+
+				        	'<div class="mui-info">'+
+				        		'<h2 id="mui-title">'+datas.goods_name+'</h2>'+
+				        		'<h4 id="mui-des">'+datas.goods_desc+'</h4>'+
+				        		'<h5 id="mui-time">'+datas.add_time+'</h5>'+
+				        	'</div>'+
+				        '</li>';
+				parent.append(html);
+			});
+	}
+  	mui(".mui-slider").slider({
+  	 	interval:1000
+  	});
+</script>
+</html>

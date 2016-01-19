@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/style.css" />
+		<!--数据分页样式--张建强-->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+		<style type="text/css">
+			body {
+				padding-bottom: 40px;
+			}
+			
+			.sidebar-nav {
+				padding: 9px 0;
+			}
+			
+			@media (max-width: 980px) {
+				/* Enable use of floated navbar text */
+				.navbar-text.pull-right {
+					float: none;
+					padding-left: 5px;
+					padding-right: 5px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<form class="form-inline definewidth m20" action="" method="post">
+			产品名称：
+			<input type="text" name="tel" class="abc input-default" placeholder="手机号">&nbsp;&nbsp;
+			<button type="submit" class="btn btn-primary">查询</button>
+		</form>
+		<table class="table table-bordered table-hover definewidth m10">
+			<thead>
+				<tr>
+					<th>加工id</th>
+					<th>加工标题</th>
+					<th>手机号</th>
+					<th>管理操作</th>
+				</tr>
+			</thead>
+			<foreach name="data" key="k" item="v">
+				<tr>
+					<td>{$v.id}</td>
+					<td>{$v.title}</td>
+					<td>{$v.tel}</td>
+					<td>
+						<a href="__URL__/save/id/{$v.id}">编辑</a>
+						<a href="javascript:;" onclick="if(confirm('确定删除吗？'))location.href='__URL__/del/id/{$v.id}'">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<div class="inline pull-right page">
+			<div class="pagination">{$page}</div>
+		</div>
+	</body>
+
+</html>

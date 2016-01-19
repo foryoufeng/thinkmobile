@@ -1,0 +1,46 @@
+<include file="Public:header" />
+		<form class="navbar-form navbar-left" role="search" action="index.html" method="get">
+			<div class="form-group">
+				搜索：<input type="text" class="form-control" name="search" placeholder="订单号|手机号|用户名" value="{$search}">
+			</div>
+			<button type="submit" class="btn btn-default">查询</button>
+		</form>
+		<table class="table table-bordered table-hover definewidth m10">
+			<thead>
+				<tr>
+					<th>订单id</th>
+					<th>订单号</th>
+					<th>购买者id</th>
+					<th>购买商品id</th>
+					<th>商品总价</th>
+					<th>使用积分</th>
+					<th>实际支付</th>
+					<th>姓名</th>
+					<th>手机号</th>
+					<th>地址</th>
+					<th>订单状态</th>
+					<th>下单时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<volist name="list" id="vo">
+				<tr>
+				<td>{$vo.id}</td>
+				<td>{$vo.order_id}</td>
+				<td>{$vo.user_id}</td>
+				<td>{$vo.goods_id|trim=','}</td>
+				<td>{$vo.price}元</td>
+				<td>{$vo.point}</td>
+				<td>{$vo['total']/100}元</td>
+				<td>{$vo.name}</td>
+				<td>{$vo.phone}</td>
+				<td>{$vo.address}</td>
+				<td><eq name="vo.status" value="1">已付款<else/>未付款</eq></td>
+				<td>{$vo.time|date="Y-m-d",###}</td>
+				<td>
+					<a href="javascript:;" onclick="if(confirm('确定删除吗？'))location.href='__URL__/delete/id/{$vo.id}'">删除</a>
+				</td>
+				</tr>
+			</volist>
+		</table>
+		<include file="Public:page" />

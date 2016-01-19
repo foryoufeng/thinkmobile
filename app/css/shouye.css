@@ -1,0 +1,17 @@
+*{ margin: 0; padding: 0;}
+body{background-color: #f0f0f0;}
+
+.mui-topPic img{ border-radius: 0;}
+
+#mui-h3-title{ width: 100%; text-align: center; font-size: 1.2rem; font-weight: normal; line-height: 50px; background: url(../images/shouye/yLine_04.png) center bottom no-repeat; background-size: 10% 4px;}
+.mui-card{border-radius: 0; padding: 0; margin: 0; border: 0; margin-top: 20px; background: #f0f0f0;}
+.mui-con-ul-li{background: #fff; padding: 0; border-radius: 0; margin-bottom: 10px; border: 0;}
+.mui-con-ul-li img{width: 100%; height: auto; margin: 0; padding: 0;}
+
+.mui-info{ width: 100%; height: auto; background: #fff;}
+.mui-info h2#mui-title{ width: 100%; font-size: 1.2rem; line-height: 30px; padding-left: 4%;}
+.mui-info h2#mui-title a{ color: #121212;}
+.mui-info h2#mui-title a:hover{ color: #ff8e20;}
+.mui-info h4#mui-des{ width: 100%; font-size: 1rem; color: #595959; line-height: 25px; padding: 2% 4% 0; font-weight: normal; text-align: justify;}
+.mui-info h5#mui-time{ width: 100%; line-height: 40px; text-align: right; padding-right: 4%; color: #666666;}
+

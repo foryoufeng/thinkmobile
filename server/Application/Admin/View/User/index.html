@@ -1,0 +1,39 @@
+<include file="Public:header" />
+<form class="navbar-form navbar-left" role="search" action="index.html" method="get">
+	<div class="form-group">
+		搜索：<input type="text" class="form-control" name="search" placeholder="订单号|手机号|用户名" value="{$search}">
+	</div>
+	<button type="submit" class="btn btn-default">查询</button>
+</form>
+		<table class="table table-bordered table-hover definewidth m10">
+			<thead>
+				<tr>
+					<th>用户id</th>
+					<th>微信号</th>
+					<th>积分</th>
+					<th>手机号</th>
+					<th>姓名</th>
+					<th>地址</th>
+					<th>性别</th>
+					<th>注册时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<volist name="list" id="vo">
+				<tr>
+				<td>{$vo.id}</td>
+				<td>{$vo.nickname}</td>
+				<td>{$vo.jifen}</td>
+				<td>{$vo.phone}</td>
+				<td>{$vo.name}</td>
+				<td>{$vo.address}</td>
+				<td><eq name="vo.sex" value="1">男<else/>女</eq></td>
+				<td>{$vo.subscribe_time|date="Y-m-d",###}</td>
+				<td>
+					<a href="/index.php/Admin/Jg/add/id/{$vo.id}">添加加工产品</a>
+					<a href="javascript:;" onclick="if(confirm('确定删除吗？'))location.href='__URL__/delete/id/{$vo.id}'">删除</a>
+				</td>
+				</tr>
+			</volist>
+		</table>
+<include file="Public:page" />

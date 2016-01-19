@@ -1,0 +1,55 @@
+.mui-content{background: #fff;}
+.top{ background: url(../images/shejishi/headbg_01.jpg) no-repeat; 
+		background-size: 100% 82%;
+		width: 100%; 
+		height: auto;
+		position: relative;}
+.wenzi{ font-size: 2rem; color: #FFF; text-align: center; padding-top: 10%;}
+.tianjia img{ padding-right: 5%; margin-top: -30px; float: right; width: 10%;}
+.wenzi2{ font-size:1rem; color: #fff; text-align: center; padding-top: 5%;}
+.wenzi3{ color: #ffc600; font-size: 1rem; text-align: center; padding-top: 5%;}
+.picimg{ padding-top: 10px; text-align: center;}
+.picimg img{ width: 25%; border-radius: 50%;}
+
+#item1mobile,#item2mobile{background: #efeff4;}
+
+.mui-segmented-control{ border: 0px;}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+    color: #f6a900;
+    border-bottom: 2px solid #f6a900;
+    background: 0 0;
+    background: #fff;
+}
+.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+    background-color: #f6a900;
+    width: 50%;
+}
+.mui-segmented-control  .mui-control-item {
+	font-size: 1.1rem;
+    line-height: 50px;
+    color: #000;
+    background: #fff;
+ 	border-left: 1px solid #fff;}
+
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+    border:0px;
+}
+.mui-table-view{ margin-top:20px; background: #efeff4; position: relative;}
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body { 
+	font-size: 1rem; 
+	color:#121212;  
+    line-height:25px;
+    width: 100%;
+    height: 55px;
+    margin-top: 8px;
+    background: #fff;
+    margin-top: -5px;
+    padding: 10px 10px 0 10px;
+}
+.jiaqian{ font-size: 1.0rem; background: #fff; color: #a6a6a6; line-height: 40px;}
+.mui-table-view-cell>a:not(.mui-btn) { white-space: normal;}
+.mui-table-view:after {
+    background-color: #efeff4;
+}
+img#back{position: fixed; bottom:3%; width: 15%; height: auto; left: 6%;}

@@ -1,0 +1,58 @@
+.mui-segmented-control{ border: 0px;}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+    color: #f6a900;
+    border-bottom: 2px solid #f6a900;
+    background: 0 0;
+    background: #fff;
+    
+}
+.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+    background-color: #f6a900;
+    width: 50%;
+}
+
+.mui-segmented-control .mui-control-item {
+	font-size: 1.1rem;
+    line-height: 50px;
+    color: #000;
+    background: #fff;
+ 	border-left: 1px solid #fff;}
+
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+    border:0px;
+}
+
+.mui-media{
+	height: auto;
+    line-height: 25px;
+    padding-top: 0%;
+    padding-left: 4%; 
+    margin-top: 10px; 
+    background: #fff;
+    }
+#sliderSegmentedControl{
+    background-color: #fff;
+    height: 45px;
+}
+.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
+    width: 100%;
+    height: 38px;
+    white-space: nowrap;}
+.mui-media-a{ width: 90%;}
+.mui-media-object .mui-pull-left{ border-radius: 50%;}
+img.mui-media-object.mui-pull-left{ margin-top: 15px;}
+.mui-table-view{ margin-top: 15px; background: #efeff4;}
+.lista{ float: left; }
+.mui-table-view-cell>a:not(.mui-btn) { margin-top: 20px;}
+ .mui-media-body{ font-size: 1.1rem; float: left; color: #121212; width: 65%; padding-top: 15px;}
+ .mui-ellipsis{ font-size: 0.9rem; color: #595959;}
+.tianjia img{ float: right; margin-top: 5%;  margin-right: 3%;}
+.tianjia a{ float: right; margin-top: 3%; margin-right: 3%; color: #000;}
+ .tupian{width: 105%; margin-left: -5%;}
+ .tupian img{margin-top: 8px; width: 32%;}
+ .biaozhu{ height: 50px; line-height: 45px; padding: 0 1%;}
+ .biaozhu-p{ float: left; font-size: 0.9rem; color: #666666;}
+ .biaozhu-p2{ float: right; font-size: 0.9rem; color: #333333; margin-right: 1%; margin-top: -42px; }
+ .biaozhu-p2 .aa{ display: block; float: left; width: 30px; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;}
+ .biaozhu-p2 span{ float: left; display: block;}

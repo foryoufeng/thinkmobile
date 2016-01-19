@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>分类</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/fenlei.css" rel="stylesheet"/>
+    <script src="js/baiduTemplate.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+<!--下拉刷新容器-->
+	<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+	  <div class="mui-scroll">
+	    <!--数据列表-->
+	    <ul class="mui-table-view mui-table-view-chevron" id="result"></ul>
+	        <script id="fenle" type="text/html">
+				<%for(var i = 0; i < 1; i++){%>
+					<li class="mui-media">
+			            <a href="javascript:;">
+			                <img class="mui-tu" src="images/fenlei/3.jpg">
+			            </a>
+			            <div class="mui-wenzi">
+			            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+			            	<p class="mui-wenzi-p1"><%=data.list[i].cat_name%></p>
+			            	<img class="mui-wenzi-tu2" src="images/fenlei/right_07.jpg">
+			            </div>
+			        </li>
+				<%}%>
+			</script>
+			
+			<script id="downfenle" type="text/html">
+				<%for(var i = startlen; i < len; i++){%>
+					<li class="mui-media">
+			            <a href="javascript:;">
+			                <img class="mui-tu" src="images/fenlei/3.jpg">
+			            </a>
+			            <div class="mui-wenzi">
+			            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+			            	<p class="mui-wenzi-p1"><%=data.list[i].cat_name%></p>
+			            	<img class="mui-wenzi-tu2" src="images/fenlei/right_07.jpg">
+			            </div>
+			        </li>
+				<%}%>
+			</script>
+	    <!--</ul>-->
+	  </div>
+	</div>
+	
+	
+	
+	<!--<div id="pullrefresh" class="mui-content">
+	    <ul class="mui-table-view" id="result"></ul>
+	    	<script id="t:_1234-abcd-1" type="text/html">
+				<%for(var i = 0; i < 2 ; i++){%>
+					<li class="mui-media">
+			            <a href="javascript:;">
+			                <img class="mui-tu" src="images/fenlei/3.jpg">
+			            </a>
+			            <div class="mui-wenzi">
+			            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+			            	<p class="mui-wenzi-p1"><%=data.list[i].brand_name%></p>
+			            	<img class="mui-wenzi-tu2" src="images/fenlei/right_07.jpg">
+			            </div>
+			        </li>
+				<%}%>
+			</script>-->
+	        <!--<li class=" mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-tu" src="images/fenlei/1.jpg">
+	            </a>
+	            <div class="mui-wenzi">
+	            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+	            	<p class="mui-wenzi-p1">日常时尚款</p>
+	            	<img class="mui-wenzi-tu" src="images/fenlei/right_07.jpg">
+	            </div>
+	        </li>
+	        <li class=" mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-tu" src="images/fenlei/3.jpg">
+	            </a>
+	            <div class="mui-wenzi">
+	            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+	            	<p class="mui-wenzi-p1">古典贵族风</p>
+	            	<img class="mui-wenzi-tu" src="images/fenlei/right_07.jpg">	
+	            </div>
+	        </li>
+	        <li class=" mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-tu" src="images/fenlei/4.jpg">
+	            </a>
+	            <div class="mui-wenzi">
+	            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+	            	<p class="mui-wenzi-p1">情侣定制款</p>
+	            	<img class="mui-wenzi-tu" src="images/fenlei/right_07.jpg">
+	            	
+	            </div>
+	        </li>
+	        <li class=" mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-tu" src="images/fenlei/2.jpg">
+	            </a>
+	            <div class="mui-wenzi">
+	            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+	            	<p class="mui-wenzi-p1">日常时尚款</p>
+	            	<img class="mui-wenzi-tu" src="images/fenlei/right_07.jpg">
+	            </div>
+	        </li>
+	        <li class=" mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-tu" src="images/fenlei/3.jpg">
+	            </a>
+	            <div class="mui-wenzi">
+	            	<img class="mui-wenzi-tu" src="images/fenlei/left_05.jpg">
+	            	<p class="mui-wenzi-p1">日常时尚款</p>
+	            	<img class="mui-wenzi-tu" src="images/fenlei/right_07.jpg">
+	            </div>
+	        </li>-->
+	    <!--</ul>   
+	</div>-->
+</body>
+<script type="text/javascript">
+mui.getJSON("http://123.56.44.104:81/ibaoh/index.php/category/index",{p:1},function(data){	
+	if(data != 0)
+	{
+		//使用baidu.template命名空间
+		var bt=baidu.template;
+		var html=bt('fenle',{data:data});
+		//渲染
+		document.getElementById('result').innerHTML=html;
+	}
+	else
+	{
+		console.log("数据读取出现错误！");	
+	}	
+})
+</script>
+
+<!-- 使用模板 -->
+<script>
+	
+	mui.init({
+		pullRefresh: 
+		{
+			container: '#pullrefresh',
+			down: {
+				callback: pulldownRefresh
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				contentnomore:"没有更多数据了",
+				callback: pullupRefresh
+			}
+		}
+	});
+	
+	
+	/**
+	* 下拉刷新具体业务实现
+	*/
+	function pulldownRefresh()
+	{
+		setTimeout(function(){
+		var downul = document.querySelector('.mui-table-view');
+		var downli = document.querySelectorAll('.mui-media');
+		//for(var i = downli.length, len = i + 3;i < len; i ++)
+		//{
+			var li = document.createElement("li");
+			li.className = "mui-media";
+			
+			/*请求数据*/
+			getdata(downli.length);	
+			
+			
+		//}
+		/*下拉刷新执行完毕*/
+		mui("#pullrefresh").pullRefresh().endPulldownToRefresh();
+		
+	},1500);
+	
+	}
+	/**
+	 * 上拉加载具体业务实现
+	 */
+	var count = 0;
+	function pullupRefresh() 
+	{	
+		setTimeout(function() {
+			console.log("向上拉");
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 1)); //参数为true代表没有更多数据了。
+			var upul = document.querySelector('.mui-table-view');
+			var upli = document.querySelectorAll('.mui-media');
+			
+			var li = document.createElement('li');
+			li.className = 'mui-media';
+			/*请求数据*/
+				
+			getdata(upli.length);	
+			
+		}, 1500);
+	}
+	
+	function getdata(uplilength){
+		mui.getJSON("http://123.56.44.104:81/ibaoh/index.php/category/index",{p:1},function(data)
+		{
+			var startlen=uplilength;
+			var bt=baidu.template;
+			
+			var len=3;
+			if(len >= data.list.length){
+				len=data.list.length;
+			}else{
+				len=3;
+			}
+			var html=bt('downfenle',{data:data,startlen:startlen,len:len});
+		
+			document.getElementById('result').innerHTML += html;
+			
+		});
+	}
+	
+</script>
+</html>
+

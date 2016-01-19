@@ -1,0 +1,10 @@
+.mui-table-view{ background: #f0f0f0; border: 0;}
+.mui-table-view:before{ background-color:#efeff4;}
+.mui-table-view:after { background-color: #efeff4;}
+.mui-media{ background: url(../images/fenlei/fenlei_02.jpg) no-repeat; background-size: 100% 100%; width: 100%; height: auto; margin-top:20px}
+.mui-tu{margin: 6% 6% 0 6%;width: 88%; height: auto;}
+.mui-wenzi{ width:175px; height: 60px; margin:auto;  margin-top: 20px;}
+.mui-wenzi-tu{ float: left;}
+.mui-wenzi .mui-wenzi-p1{font-size: 1.1rem; color: #121212; margin-top: 3px; float: left;}
+.p1{ width: 100%; padding: 4%; text-align: justify; text-indent: 2em; font-size: 1rem; color: #242424; line-height: 30px; margin-top: 10px;}
+img#fanhui{ position:fixed; bottom: 3%; width: 15%; height: auto; left: 6%;}

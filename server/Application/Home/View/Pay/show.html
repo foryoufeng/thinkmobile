@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes'>
+		<title>凝宝斋</title>
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/index.css">
+	</head>
+
+	<body>
+		<div class="headTitle">
+			<h4>正在跳转微信支付...</h4>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//调用微信JS api 支付
+		function jsApiCall()
+		{
+			WeixinJSBridge.invoke(
+					'getBrandWCPayRequest',
+					{$param},
+			function(res){
+				WeixinJSBridge.log(res.err_msg);
+				//alert(res.err_code+res.err_desc+res.err_msg);
+				if (res.err_msg == "get_brand_wcpay_request:ok") {
+					//alert("支付成功");
+				}else{
+					alert("支付失败");
+				}
+				window.close();
+				window.location.href="/index.php/User/center";
+			}
+		);
+		}
+
+		function callpay()
+		{
+			if (typeof WeixinJSBridge == "undefined"){
+				if( document.addEventListener ){
+					document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+				}else if (document.attachEvent){
+					document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+					document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+				}
+			}else{
+				jsApiCall();
+			}
+		}
+		callpay();
+	</script>
+</html>

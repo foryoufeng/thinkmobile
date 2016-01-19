@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/style.css" />
+	<!--百度编辑器（张建强）-->
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/baidu/ueditor.config.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/baidu/ueditor.all.js"></script>
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<form action="" method="post">
+<table class="table table-bordered table-hover definewidth m10">
+    <tr>
+        <td width="10%" class="tableleft">标题</td>
+        <td><input type="text" name="title"/></td>
+    </tr>
+
+    <tr>
+        <td class="tableleft">新闻简介</td>
+        <td>
+        	<script id="container" name="content" type="text/plain"></script>
+        </td>
+    </tr> 
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+	var ue = UE.getEditor('container');
+</script>

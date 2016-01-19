@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
+		<title>个人信息完善</title>
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+		<style>
+			.OK {
+				width: 100%;
+				height: auto;
+			}
+			
+			.OK img {
+				width: 80px;
+				height: auto;
+				margin-left: 40%;
+				margin-top: 25%;
+			}
+			
+			.OK h4 {
+				width: 100%;
+				text-align: center;
+				margin-top: 30px;
+				font-size: 2rem;
+				color: #a8a8a8;
+			}
+			
+			.OKBtn {
+				width: 92%;
+				margin-left: 4%;
+				font-size: 1.5rem;
+				color: #818181;
+				margin-top: 30px;
+				height: 45px;
+				background: #07be04;
+				border: 0;
+				color: #FFF;
+				font-size: 18px;
+			}
+		</style>
+		<script src="__PUBLIC__/Index/js/jquery.js"></script>
+		<script src="__PUBLIC__/Index/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		<div class="OK">
+			<img src="__PUBLIC__/Index/images/OK_03.jpg" alt="OK">
+			<h4>您的信息已经完善成功</h4>
+			<button type="button" onclick="go()" class="btn btn-primary OKBtn" data-toggle="button">完成</button>
+		</div>
+	</body>
+<script>
+	function go(){
+		window.location.href="{$url}";
+	}
+</script>
+</html>

@@ -1,0 +1,19 @@
+.mui-content{background: #fff;}
+.mui-table-view{ margin-top:0px; background: #efeff4; position: relative;}
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body { 
+	font-size: 1rem; 
+	color:#121212;  
+    line-height:25px;
+    width: 100%;
+    height: 55px;
+    margin-top: 8px;
+    background: #fff;
+    margin-top: -5px;
+    padding: 10px 10px 0 10px;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell { padding: 15px 0 0 14px;}
+.mui-table-view-cell>a:not(.mui-btn) { white-space: normal;}
+.mui-table-view:after {
+    background-color: #efeff4;
+}
+.jiaqian{ font-size: 1.0rem; background: #fff; color: #a6a6a6; line-height: 40px;}

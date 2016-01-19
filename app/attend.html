@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>关注</title>
+    <script src="js/mui.min.js"></script>
+    <script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/guanzhu.css" rel="stylesheet"/>
+    <script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/baiduTemplate.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>  
+    <style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+		</style>
+</head>
+<body>
+<div  class="mui-content">
+<div id="slider" class="mui-slider mui-fullscreen">
+	<div id="sliderSegmentedControl" class="mui-scroll-wrapper  mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+		<div class="mui-scroll">
+		<a class="mui-control-item mui-active" href="#item1mobile" style="width:50%;">
+				热卖
+		</a>
+		<a class="mui-control-item" href="#item2mobile" style="width: 50%;">
+				最新
+		</a>
+		</div>
+	</div>    
+	<div id="sliderProgressBar" class="mui-slider-progress-bar " ></div>
+	<div class="mui-slider-group">
+		<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+			<div id="scroll1" class="mui-scroll-wrapper">
+				<div class="mui-scroll" >
+				<ul class="mui-table-view" id="lists2"></ul>
+				<script type="text/html" id="list2">
+					<%for( var i = 0;i<1;i++){%>	
+				        <li class="mui-media">
+				            <a href="javascript:;">
+				                <img class="mui-media-object mui-pull-left" src="images/guanzhu/ren3_07.jpg">
+				                <div class="mui-media-body">
+				                    <%=data.list[i].brand_name%>
+				                    <p class="mui-ellipsis"><%=data.list[i].brand_desc%></p>
+				                </div>
+				            </a>
+				            <div class="tianjia"><img src="images/guanzhu/tianjia_03.jpg" style="width: 6%;"></div>
+				        
+				        <div class="tupian">
+				        	<img src="images/guanzhu/tu5.jpg" style="width: 32%; float: left; ">
+				        	<img src="images/guanzhu/tu4.jpg" style="width: 32%; margin-left: 1.6%; margin-right:1.4%;">
+				        	<img src="images/guanzhu/tu3.jpg" style="width: 32%; float: right;" >
+				        </div>
+				        <div class="biaozhu"><p class="biaozhu-p">粉丝人数  <span style="color: #333;">7368</span>&nbsp;&nbsp;作品数  <span style="color: #333;"><%=data.list[i].num%></span></p></div>
+						<!--<p class="biaozhu-p2"><span class="aa">珠宝</span><span>●</span><span class="aa">镶嵌</span><span>●</span><span class="aa">戒指</span></p>-->
+				        <p class="biaozhu-p2">
+				        <%for(var j=0; j<data.list[i].imgs.length;j++){%>
+				        	<%if(j == data.list[i].imgs.length - 1){%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span>
+				        	<%}else{%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span><span>●</span>
+				        	<%}%>							
+						<%}%>
+				        </p>
+				        
+				        <!--<span class="aa">镶嵌</span><span>●</span><span class="aa">戒指</span>-->
+				        </li>
+				<%}%>
+				</script> 
+				
+				<script type="text/html" id="guanzhuli2">  
+					<%for( var i = startlen;i<len;i++){%>	
+				        <li class="mui-media">
+				            <a href="javascript:;">
+				                <img class="mui-media-object mui-pull-left" src="images/guanzhu/ren3_07.jpg">
+				                <div class="mui-media-body">
+				                    <%=data.list[i].brand_name%>
+				                    <p class="mui-ellipsis"><%=data.list[i].brand_desc%></p>
+				                </div>
+				            </a>
+				            <div class="tianjia"><img src="images/guanzhu/tianjia_03.jpg" style="width: 6%;"></div>
+				        
+				        <div class="tupian">
+				        	<img src="images/guanzhu/tu5.jpg" style="width: 32%; float: left; ">
+				        	<img src="images/guanzhu/tu4.jpg" style="width: 32%; margin-left: 1.6%; margin-right:1.4%;">
+				        	<img src="images/guanzhu/tu3.jpg" style="width: 32%; float: right;" >
+				        </div>
+				        <div class="biaozhu"><p class="biaozhu-p">粉丝人数  <span style="color: #333;">7368</span>&nbsp;&nbsp;作品数  <span style="color: #333;"><%=data.list[i].num%></span></p></div>
+						<!--<p class="biaozhu-p2"><span class="aa">珠宝</span><span>●</span><span class="aa">镶嵌</span><span>●</span><span class="aa">戒指</span></p>-->
+				        <p class="biaozhu-p2">
+				        <%for(var j=0; j<data.list[i].imgs.length;j++){%>
+				        	<%if(j == data.list[i].imgs.length - 1){%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span>
+				        	<%}else{%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span><span>●</span>
+				        	<%}%>							
+						<%}%>
+				        </p>
+				        
+				        <!--<span class="aa">镶嵌</span><span>●</span><span class="aa">戒指</span>-->
+				        </li>
+				<%}%>
+				</script> 
+				
+			</div>
+			</div>
+		</div>  
+		<div id="item2mobile" class="mui-slider-item mui-control-content">
+			<div class="mui-scroll-wrapper" >
+				<div class="mui-scroll" >
+				<ul class="mui-table-view" id="lists"></ul>
+				<script type="text/html" id="list">
+					<%for( var i = 0;i<1;i++){%>
+						
+				        <li class="mui-media">
+				            <a href="javascript:;">
+				                <img class="mui-media-object mui-pull-left" src="images/guanzhu/ren3_07.jpg">
+				                <div class="mui-media-body">
+				               
+				                    <%=data.list[i].brand_name%>
+				                    <p class="mui-ellipsis"><%=data.list[i].brand_desc%></p>
+				                </div>
+				            </a>
+				            <div class="tianjia"><img src="images/guanzhu/tianjia_03.jpg" style="width: 6%;"></div>
+				        <div class="tupian">
+				        	<img src="images/guanzhu/tu5.jpg" style="width: 32%; float: left; ">
+				        	<img src="images/guanzhu/tu4.jpg" style="width: 32%; margin-left: 1.8%; margin-right:1.4%;">
+				        	<img src="images/guanzhu/tu3.jpg" style="width: 32%; float: right;" >
+				        </div>
+				        <div class="biaozhu"><p class="biaozhu-p">粉丝人数  <span style="color: #333;">7368</span>&nbsp;&nbsp;作品数  <span style="color: #333;"><%=data.list[i].num%></span></p></div>
+						<p class="biaozhu-p2">
+						<%for(var j=0; j<data.list[i].imgs.length;j++){%>
+							<%if(j == data.list[i].imgs.length - 1){%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span>
+				        	<%}else{%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span><span>●</span>
+				        	<%}%>
+						<%}%>
+						
+						</p>
+				        </li>
+				<%}%>
+				</script>    
+				
+				<script type="text/html" id="guanzhuli">
+					<%for( var i =startlen;i<len;i++){%>
+						
+				        <li class="mui-media">
+				            <a href="javascript:;">
+				                <img class="mui-media-object mui-pull-left" src="images/guanzhu/ren3_07.jpg">
+				                <div class="mui-media-body">
+				                	
+				                    <%=data.list[i].brand_name%>
+				                    <p class="mui-ellipsis"><%=data.list[i].brand_desc%></p>
+				                </div>
+				            </a>
+				            <div class="tianjia"><img src="images/guanzhu/tianjia_03.jpg" style="width: 6%;"></div>
+				        <div class="tupian">
+				        	<img src="images/guanzhu/tu5.jpg" style="width: 32%; float: left; ">
+				        	<img src="images/guanzhu/tu4.jpg" style="width: 32%; margin-left: 1.8%; margin-right:1.4%;">
+				        	<img src="images/guanzhu/tu3.jpg" style="width: 32%; float: right;" >
+				        </div>
+				        <div class="biaozhu"><p class="biaozhu-p">粉丝人数  <span style="color: #333;">7368</span>&nbsp;&nbsp;作品数  <span style="color: #333;"><%=data.list[i].num%></span></p></div>
+						<p class="biaozhu-p2">
+						<%for(var j=0; j<data.list[i].imgs.length;j++){%>
+							<%if(j == data.list[i].imgs.length - 1){%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span>
+				        	<%}else{%>
+				        		<span class="aa"><%=data.list[i].imgs[j].keywords%></span><span>●</span>
+				        	<%}%>
+						<%}%>
+						
+						</p>
+				        </li>
+				<%}%>
+				</script>    
+				
+			</div>	
+			</div>
+		</div>
+		
+	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+var pid = 1; 
+	//热卖
+	Get(DESIGNER_LIST,{p:pid,type:1},function(data){	
+		if(data)
+		{
+			var bt=baidu.template;
+			var html=bt('list2',{data:data});
+			document.getElementById('lists2').innerHTML=html;
+		}
+		else
+		{
+			mui.toast("数据读取出现错误！");	
+		}	
+	});
+	
+	//最新
+	Get(DESIGNER_LIST,{p:pid,type:2},function(data){
+		if(data)
+		{
+			var bt=baidu.template;
+			var html=bt('list',{data:data});
+			document.getElementById('lists').innerHTML=html; 
+		}else{
+			mui.toast("数据读取出现错误！");
+		}
+	});
+</script>
+
+<script> 
+	mui.init();
+	(function($) {
+		//阻尼系数
+		var deceleration = mui.os.ios?0.003:0.0009;
+		$('.mui-scroll-wrapper').scroll({
+			bounce: false,
+			indicators: true, //是否显示滚动条
+			deceleration:deceleration
+		});
+		$.ready(function() {
+			//循环初始化所有下拉刷新，上拉加载。
+			$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+				$(pullRefreshEl).pullToRefresh({
+					down: {
+						callback: function() {
+							var self = this;
+							setTimeout(function() {
+								console.log("index"+index);
+								if(index==0){
+									var guanzhu = self.element.querySelector('.mui-table-view'); 
+									guanzhu.insertBefore(createFragment(guanzhu, index, 5, true), guanzhu.firstChild); 
+									self.endPullDownToRefresh();
+								}
+								else if(index==1){
+									var guanzhu = self.element.querySelector('.mui-table-view'); 
+									guanzhu.insertBefore(createFragment(guanzhu, index, 5, true), guanzhu.firstChild); 
+									self.endPullDownToRefresh();
+								}
+								
+							}, 1000);
+						}
+					},
+					up: {
+						contentdown: '',
+						contentrefresh: '正在加载...',
+						contentnomore: '没有更多数据了',
+						callback: function() {	
+							var self = this;  
+							setTimeout(function(){
+								if(index==1){
+									var guanzhu = self.element.querySelector('.mui-table-view');
+									guanzhu.appendChild(createFragment(guanzhu, index, 5));
+									self.endPullUpToRefresh(true);
+								}
+								else{
+									var guanzhu = self.element.querySelector('.mui-table-view');
+									guanzhu.appendChild(createFragment(guanzhu, index, 5));
+									self.endPullUpToRefresh(true);
+								}
+								
+							}, 1000);
+							
+						}
+					}
+				});
+			});
+			var createFragment = function(guanzhu, index, count, reverse) {
+				var lengthul = guanzhu.querySelectorAll('li').length;
+				var fragment = document.createDocumentFragment();
+				var li;
+				
+				li = document.createElement('li');
+				li.className = 'mui-media';
+				getData(lengthul,index);
+					
+				return fragment;
+			};
+		});
+	})(mui);
+	
+	var startlen;
+	var len;
+	function getData(lilength,index)
+	{
+		if(index == 0)
+		{
+			Get(DESIGNER_LIST,{p:pid,type:1},function(data)
+			{
+				var bt=baidu.template;
+				getLength(lilength,data);
+				
+				var guanzhuhtml=bt('guanzhuli2',{data:data,len:len,startlen:startlen});
+				document.getElementById('lists2').innerHTML += guanzhuhtml;
+			});
+			
+		}  
+		else if(index == 1)
+		{
+			Get(DESIGNER_LIST,{p:pid,type:2},function(data)
+			{
+				getLength(lilength,data);
+				var bt=baidu.template;
+				var guanzhuhtml2=bt('guanzhuli',{data:data,len:len,startlen:startlen});
+				document.getElementById('lists').innerHTML += guanzhuhtml2;
+			});
+		}
+	}
+	
+	//计算追加数据的开始位置，以及加载长度
+	function getLength(lilength,data)
+	{
+		startlen = lilength;
+		len = 3;
+		
+		if(len >= data.list.length)
+		{
+			len=data.list.length;
+		}else{
+			len=3;
+		}
+	}
+</script>
+
+</body>
+</html>

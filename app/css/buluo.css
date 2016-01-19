@@ -1,0 +1,23 @@
+
+ul{list-style-type: none;}
+.mui-content{position: relative;}
+.newShowList{width: 100%; margin: 0; padding: 0;}
+.newShowList li{ margin-bottom: 15px; box-shadow: 0 3px 5px 0px #eaeaea; background: #fff; }
+.newShowList li img{ width: 100%; height: auto; }
+.newShowList li h2{ font-size: 1.2rem; padding: 10px 4%; height: auto; line-height:30px; margin: 0; background: none; }
+.mui-table-view{ background: #efeff4;}
+.mui-table-view-cell{padding-left: 0; padding-right: 0; padding-top: 0;}
+.mui-table-view-cell p{ line-height: 30px; padding: 0 4%; font-size: 1rem; font-weight: normal; color: #666; font-family: "宋体" }
+.mui-table-view-cell:after{height: 0;}
+.newShowList li span{ text-align: right; font-family: "黑体"; display: block; }
+.newShowList li span a.share{background: url(../images/buluo/blog_share.png) 0 16px no-repeat; color: #333;font-size: 1rem; line-height: 28px; padding:15px 4% 25px 20px;}
+.newShowList li a{ color: #121212;}
+.newShowList li a:hover{ color: #ff8e20;}
+.modal{width:100%; height:100%; margin: 0; padding: 70px 0; position:fixed; top: 0;left: 0; background:rgba(255,255,255,.95); display: none; }
+.modal li{ width: 33%; margin: 10px 0; float: left; text-align: center; }
+.modal li a{ color: #333; font-size: 1rem; line-height: 48px; display: block; }
+.modal li a img{ display: block; margin: 0 auto; width: 60px; height: 60px; }
+.modal span{ width: 100%; display: block; float: left; clear: both; text-align: center;margin-top: 18%;}
+.modal span img{ width: 30px; height: 30px;}
+.blur{-webkit-filter: blur(10px);-moz-filter: blur(10px);-ms-filter: blur(10px);filter: blur(10px);}
+.mui-table-view-cell.mui-active{background-color: #fff;}

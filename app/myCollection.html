@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>我的收藏</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="css/myCollection.css"/>
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">我的收藏</h1>
+	</header>
+	<div class="mui-content" id="content">
+		<script type="text/x-handlebars-template" id="contentHtml">
+			{{#each list}}
+				<h5 class="mui-content-padded">{{name}}</h5>
+				<ul id="shoucang_{{getIndex @index}}" class="mui-table-view">
+					{{#each goods}}
+						<li class="mui-table-view-cell">
+							<div class="mui-slider-right mui-disabled">
+								<a class="mui-btn mui-btn-black" id="delBtn" onclick="delLi(this,{{goods_id}})">删除</a>
+							</div>
+							<div class="mui-slider-handle">
+								<img class="mui-media-object mui-pull-left" src="http://123.56.44.104:81/{{goods_thumb}}"> 
+								<h2 class="mui-media-body">{{goods_name}}</h2>
+								<span class="price">￥{{shop_price}}</span>
+								<span class="like"></span>
+							</div>
+						</li>
+					{{/each}}
+				</ul>
+			{{/each}}
+		</script>
+		
+	</div>
+	
+	<script>
+		Get(COLLECT_INFO,"",function(data){
+			var contentHtml = Handlebars.compile($("#contentHtml").html());
+			Handlebars.registerHelper("getIndex",function(index){
+				this._index = index + 1;
+				return this._index;
+			})
+			$("#content").html(contentHtml(data));
+		});
+		
+		//删除按钮点击事件
+		function delLi(obj,goodsId)
+		{
+			var btnArray = ['确认', '取消'];
+			var elem = obj;
+			mui.confirm('确认删除该条收藏？', '爱宝盒消息', btnArray, function(e) {
+				if (e.index == 0)
+				{
+					var li = elem.parentNode.parentNode;
+					li.parentNode.removeChild(li);
+					
+					Get(COLLECT_DEL,{goods_id:goodsId},function(data){
+						if(data)
+						{
+							if(data.list.code == 0)
+							{
+								mui.toast("删除成功！");
+							}else{
+								mui.toast("删除失败！");
+							}
+						}
+					})
+				}
+			});
+		}
+	</script>
+</body>
+</html>

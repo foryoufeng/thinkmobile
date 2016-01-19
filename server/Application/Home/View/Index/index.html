@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+		<title>凝宝斋</title>
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/index.css">
+		<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript">
+			function WeiXinShareBtn() { 
+				 if (typeof WeixinJSBridge == "undefined") { 
+				 alert("请先通过微信搜索 wow36kr 添加36氪为好友，通过微信分享文章 "); 
+				 } else { 
+				 WeixinJSBridge.invoke('shareTimeline', { 
+				 "title": "36氪", 
+				 "link": "http://www.36kr.com", 
+				 "desc": "关注互联网创业", 
+				 "img_url": "http://www.36kr.com/assets/images/apple-touch-icon.png" 
+				 }); 
+				 } 
+			 }
+		</script>
+		
+		
+	</head>
+
+	<body>
+		<div class="headTitle">
+			<h4>微信在线支付</h4>
+		</div>
+
+		<div class="goodsDiv">
+
+			<div class="goodsInfoBigDiv">
+				<div class="goodsInfo">
+					<h4 class="goosCodeText">商品编号：</h4>
+					<h4 class="priceText">￥2100</h4>
+					<input type="text" class="form-control goodsCode" placeholder="请输入商品编号">
+				</div>
+			</div>
+
+			<img src="__PUBLIC__/Index/images/add_03.png" class="img-rounded addImg" onClick="addNewGoods()">
+			<h4 class="addGoosText">点击添加新商品</h4>
+		</div>
+
+		<div class="pointsDiv">
+			<div class="pointDeduction">
+				<h4 class="pointDeductionTxt">积分抵扣</h4>
+				<input type="text" class="form-control usePoints">
+				<h4 class="usePointsTxt">使用积分</h4>
+				<p>可使用积分：99</p>
+			</div>
+			<h4 class="pointWarmTxt">消费满20元获得1积分</h4>
+			<h4 class="pointWarmTxt">1积分可抵用1元</h4>
+			<div class="payDiv">
+				<h3 class="payMoneyTxt">实付金额：</h3>
+
+				<h3 class="payMoney">￥0</h3>
+				<h3 class="allMoney">总价：</h3>
+				<h3 class="goods">已选择了<span>0</span>件商品</h3>
+
+			</div>
+		</div>
+
+		<button type="button" class="btn btn-primary payBtn" data-toggle="button">微信支付</button>
+		<div id="aaa">111</div>
+		<a click="WeiXinShareBtn()" href="JavaScript:;">222222222222222222222222</a>
+	</body>
+
+	<script>
+//		添加input框
+		function addNewGoods() {
+			var goodsInfoHtml = $(".goodsInfo").html();
+			$(".goodsInfoBigDiv").append('<div class="goodsInfo">' + goodsInfoHtml + '</div>');
+		}
+//		循环发ajax获取产品的价格
+		$(function() {
+			run();
+			function run() {
+				interval = setInterval(chat,"1000");
+			}
+			function chat(){
+				$(".goodsInfo .goodsCode").each(function(){
+					var bh = $(this).val();
+			        $.ajax({
+						type:"post",
+						url: "http://101.200.77.195/index.php/Home/Cp/ajax",
+						data : {bh : bh},
+						dataType:'json',
+						success:function(data){
+							$(this).prev().html(data);
+						}
+					});
+				});
+			}
+		});
+	</script>
+
+</html>

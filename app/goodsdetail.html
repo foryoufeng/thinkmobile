@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>商品详情</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/goodsdetail.css"/>
+    <script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/baiduTemplate.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+      		swipeBack:true
+      	});
+    </script>
+</head>  
+<body id="body">
+	<div class="mui-content">
+		
+		<!--banner begin-->
+	    <div id="gbanner" class="mui-slider">
+	    	<div class="iconshare" id="iconshare">
+	        	<a href="#"><img src="images/goodsdetail/dialogue.png"/></a>
+	        	<a class="share" href="#"><img src="images/goodsdetail/share.png"/></a>
+	        </div>
+	        <div id="dbanner" class="mui-slider-group mui-slider-loop">
+		        	<div class="mui-slider-item mui-slider-item-duplicate">
+		                <a href="#">
+		                	<!--<img src="images/17.jpg">-->
+		                    <img src=<%=data.list.imgs[data.list.imgs.length].img_url%>>
+		                </a>
+		            </div>
+		            <!--loop banner begin-->
+		            <script id="t:dbanner" type="text/html">
+		            <%for(var i=0; i<data.list.imgs.length; i++){%>
+		            <div class="mui-slider-item">
+		                <a href="#">
+		                	<!--<img src="images/17.jpg">-->
+		                    <img src=<%=data.list.imgs[i].img_url%>>
+		                </a>
+		            </div>
+		            <%}%>
+		            </script>
+		            <!--loop banner end-->
+		            <div class="mui-slider-item mui-slider-item-duplicate">
+		                <a href="#">
+		                	<!--<img src="images/17.jpg">-->
+		                    <img src=<%=data.list.imgs[0].img_url%>>
+		                </a>
+		            </div>
+	        </div>
+	        <div id="point" class="mui-slider-indicator">
+	        	<script id="t:point" type="text/html">
+		            <div class="mui-indicator mui-active"></div>
+		            <%for(var i=0; i<data.list.imgs.length-1; i++){%>
+		            <div class="mui-indicator"></div>
+		            <%}%>
+	            </script>
+	        </div>
+	    </div>
+	    <!--goodsinfo begin-->
+	    <div id="goodsinfo" class="goodsinfo"></div>
+	    <script id="t:goodsinfo" type="text/html">
+	    	<div id="onlike" class="like" onclick="info()"></div>
+	    	<div id="onlikes" class="likes" onclick="infos()" ></div>
+	    	<h1><%=data.list.goods_name%></h1>
+	    	<span class="price">￥<%=data.list.shop_price%></span>
+	    	<span class="poster">快递：包邮</span>
+	    </script>
+	    <!--designerinfo begin-->
+	    <div id="designerinfo" class="designerinfo"></div>
+	    <script id="t:designerinfo" type="text/html">
+	    	<div class="profile"><img src="http://123.56.44.104:81/data/brandlogo/<%=data.list.brand[0].brand_logo%>" /></div>
+	    	<h1><%=data.list.brand[0].brand_name%></h1>
+	    	<span>粉丝：<%=data.list.fans%></span>
+	    </script>
+	    <!--detail begin-->
+	    <div id="slider" class="mui-slider">
+			<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<a class="mui-control-item" href="#item1mobile">
+					参数
+				</a>
+				<a class="mui-control-item" href="#item2mobile">
+					详情
+				</a>
+				<a class="mui-control-item" href="#item3mobile">
+					评价
+				</a>
+			</div>
+			<div id="sliderProgressBar" class="mui-slider-progress-bar" ></div>
+			<div class="mui-slider-group">
+				<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">	    		
+	    			<div id="parameter"></div>
+	    			<script id="t:parameter" type="text/html">
+	    				<%for(var i=0; i<data.list.parameter.length; i++){%>
+	    					<span><%=data.list.parameter[i].name%></span><span><%=data.list.parameter[i].value%></span>
+	    				<%}%>
+	    			</script>
+				</div>
+				<div id="item2mobile" class="mui-slider-item mui-control-content">
+					<div id="detail"></div>
+						<script id="t:detail" type="text/html">
+							<%=data.list.goods_desc%>
+						</script>
+						<!--<%for(var i=0; i<data.list.imgs.length;i++){%>
+								<img src="http://123.56.44.104:81/ibaoh/<%=data.list.imgs[i].img_url%>"/>
+							<%}%>-->
+				</div>
+				<div id="item3mobile" class="mui-slider-item mui-control-content">
+					<div id="evaulate">
+						<ul id="pinjia" class="mui-table-view"></ul>
+						<script id="t:pinjia" type="text/html">
+							<%for(var i=0; i<data.list.discuss.length; i++){%>
+								<li class="mui-table-view-cell">
+									<div class="eprofile"><img src="http://123.56.44.104:81/ibaoh/<%=data.list.discuss[i].alias%>"></div>
+									<h1><%=data.list.discuss[i].user_name%>
+										<ul id="star" class="star mui-table-view">
+											<%for(var j=0;j<data.list.discuss[i].comment_rank;j++){%>
+												<li class="mui-table-view-cell"></li>
+											<%}%>
+											<%for(var j=0;j<5-data.list.discuss[i].comment_rank;j++){%>
+												<li class="mui-table-view-cell nostar"></li>
+											<%}%>
+										</ul>
+									</h1>
+									<p><%=data.list.discuss[i].content%></p>
+									<span><%=data.list.discuss[i].add_time%> 颜色分类：水绿 尺寸：M</span>
+								</li>
+							<%}%>
+						</script>
+					</div>
+				</div>
+				
+			</div>
+			<!--buttons begin-->
+			<div class="botbut" id="botbut">
+				<img src="images/goodsdetail/returnpage.png" class="mui-action-back" id="back"/>
+				<button type="button"  class="mui-btn">立即购买</button>
+				<button type="button"  class="mui-btn" id="addCartBtn">加入购物车</button>
+			</div>
+		</div>
+		<!--share-->
+		<ul id="modal" class="modal">
+			<li><a href="#"><img src="images/buluo/share_1.png"/>微信朋友圈</a></li>
+			<li><a href="#"><img src="images/buluo/share_2.png"/>微信好友</a></li>
+			<li><a href="#"><img src="images/buluo/share_3.png"/>微博</a></li>
+			<li><a href="#"><img src="images/buluo/share_4.png"/>QQ好友</a></li>
+			<li><a href="#"><img src="images/buluo/share_5.png"/>邮箱</a></li>
+			<li><a href="#"><img src="images/buluo/share_6.png"/>有道云笔记</a></li>
+			<span><img id="close" src="images/buluo/close.png"/></span>	
+		</ul>
+	    <!--end-->
+	    
+	    <!--加入购物车遮罩-->
+	    <div id="addCart">
+	    	<div id="sureBtn">
+	    		<button type="button" class="mui-btn mui-btn-blue">确定</button>
+	    	</div>
+	    	<div id="attrInfo">
+	    		<div id="attrVal">
+	    			
+	    		</div>
+	    		<script type="text/x-handlebars-template" id="attrInfoHtml">
+	    			<div id="goodsTitle">
+		    			<img src="images/addcart_03.jpg" id="goodsLogo"/>
+		    			<div id="goodsTitleDesc">
+		    				<h3>{{list.goods_name}}</h3>
+		    				<h2 id="goodsPrice">￥{{list.shop_price}}</h2>
+		    				<h4 id="goodsNumber" attr='0'>库存：{{list.goods_number}}件</h4>
+		    			</div>
+		    			<img src="images/addcart_05.png" id="closeBtn" onclick="closeTck()"/>
+		    		</div>
+		    		
+		    		{{#each list.type}}
+		    			<div id="size{{addIndexAttr @index}}" class="size">
+			    			<h3>{{name}}</h3>
+			    			<form class="g_attr">
+			    			{{#each value}}
+			    				<!--<h4 id="L" name="{{../_index}}"  onclick="chooseSize(this,'#size{{addIndexAttr @index}}',{{id}})">{{attr_value}}</h4>-->
+			    				    <label>{{attr_value}}</label>
+			    				    <input  name="radio" type="radio" id="{{id}}" onchange="chooseSize()">
+			    			{{/each}}
+			    			</form>
+			    		</div>
+		    		{{/each}}		    		
+	    		</script>
+	    		<div id="number">
+	    			<h3>购买数量</h3>
+	    			<div id="totalNumber" class="mui-numbox" data-numbox-min='1'> 
+	    				<button type="button" class="mui-btn mui-btn-numbox-minus">-</button>
+	    				<input type="number" class="mui-input-numbox" id="buyNumber">
+	    				<button type="button" class="mui-btn mui-btn-numbox-plus">+</button>
+	    			</div>
+	    		</div>
+	    	</div>	
+	    </div>
+	</div>
+</body>
+<script type="text/javascript">
+	var goods_id;  //商品ID号
+	/***********获取id**********/ 
+	mui.plusReady(function()
+	{
+		var self = plus.webview.currentWebview();
+		goods_id = self.goods_id;
+		/*goods_id = 37;*/
+		log({'dd':goods_id})
+		Get(GOODS_INDEX,{type:1,goods_id:goods_id},function(data)
+		{	
+			if(data != 0)
+			{
+				var bt=baidu.template;
+				var html0=bt('t:goodsinfo',{data:data});
+				var html1=bt('t:designerinfo',{data:data});
+				var html2=bt('t:parameter',{data:data});
+				var html3=bt('t:dbanner',{data:data});
+				var html4=bt('t:point',{data:data});
+				
+				
+				document.getElementById('goodsinfo').innerHTML=html0;
+				document.getElementById('designerinfo').innerHTML=html1;
+				document.getElementById('parameter').innerHTML=html2;
+				document.getElementById('dbanner').innerHTML=html3;
+				document.getElementById('point').innerHTML=html4;
+				
+				/*使用Handlebars属性渲染界面*/
+				var attrInfoHtml = Handlebars.compile($("#attrInfoHtml").html());
+				
+				Handlebars.registerHelper("addIndexAttr",function(index,options){
+	          		this._index = index+1;
+	          		return this._index;
+				})
+				
+				$("#attrVal").html(attrInfoHtml(data));
+				
+				/*$('#attrVal').handlebarsUtils($('#attrInfoHtml'), data);*/
+				
+			}else{
+				console.log("数据读取出现错误！");	
+			}	
+		});
+		Get(GOODS_INDEX,{type:2,goods_id:goods_id},function(data)
+		{			
+			if(data != 0)
+			{
+				var bt=baidu.template;
+				
+				var html5=bt('t:detail',{data:data});
+				var html6=bt('t:pinjia',{data:data});
+				
+				document.getElementById('detail').innerHTML=html5;
+				document.getElementById('pinjia').innerHTML=html6;
+					
+			}else{
+				console.log("数据读取出现错误！");	
+			}	
+		});
+	})
+/***********结束********/
+//参数
+
+
+	mui("#gbanner").slider({
+	 	interval:1000
+	 });
+	mui("#gbanner").on("tap",".share",share);
+	mui("#modal").on("tap","#close",close);
+	function share()
+	{
+		document.getElementById('modal').style.display="block";
+		document.body.style.overflow = "hidden";
+	};
+	function close()
+	{
+		document.getElementById('modal').style.display="none";
+		document.body.style.overflow = "auto";
+	}
+	function info()
+	{
+		document.getElementById('onlikes').style.display="block";
+		Get(COLLECT_ADD,{goods_id:goods_id},function(data)
+		{
+			if(data)
+			{
+				if(data.list.code == 0)
+				{
+					mui.toast("收藏成功！");
+				}
+				else if(data.list.code == 1)
+				{
+					mui.toast("收藏失败！");
+				}
+				else if(data.list.code == 2)
+				{
+					mui.toast("请先登录！");
+				}
+				else if(data.list.code == 3)
+				{
+					mui.toast("未传递商品的ID！");
+				}
+				else if(data.list.code == 4)
+				{
+					mui.toast("该商品已经被收藏！");
+				}
+			}
+		})
+	}
+	function infos()
+	{
+		document.getElementById('onlikes').style.display="none";
+		Get(COLLECT_DEL,{goods_id:goods_id},function(data)
+		{
+			if(data)
+			{
+				if(data.list.code == 0)
+				{
+					mui.toast("移除收藏成功！");
+				}
+				else if(data.list.code == 1)
+				{
+					mui.toast("移除收藏失败！");
+				}
+			}
+		})
+	}
+	
+	Click("addCartBtn",function()
+	{
+		document.getElementById("botbut").style.display="none";
+		document.getElementById("iconshare").style.display="none";
+		document.getElementById("addCart").style.display="block";
+		document.getElementById("addCart").style.position="fixed";
+	});
+	function closeTck()
+	{
+		document.getElementById("botbut").style.display="block";
+		document.getElementById("iconshare").style.display="block";
+		document.getElementById("addCart").style.display="none";
+	}
+	
+	var attrIdVal="";
+	var attrIdValue = "";
+	var goodsNmber; 
+	/**
+	 * 属性的选择
+	 */
+	function chooseSize()
+	{
+		var attrs='';
+		$('.g_attr').each(function()
+		{
+			var attr_id=$(this).children('input:checked').attr('id')
+			if(attr_id){
+				attrs+=$(this).children('input:checked').attr('id')+',';
+			}
+		})
+		attrs=LastSubstr(attrs);//去除后面的,
+		//log({attrs});		
+		/*根据属性获取对应的库存*/ 
+		mui.getJSON(CART_INFO,{attr_id:attrs,goods_id:goods_id},function(data)
+		{
+			console.log("{attr_id:"+attrs+",goods_id:"+goods_id+"}");
+			console.log("商品详情页根据属性获取的库存及价格：data::"+JSON.stringify(data));
+			$("#goodsPrice").html('￥'+data.list.price);
+			$("#goodsNumber").html('库存：'+data.list.number+'件');
+			$("#goodsNumber").attr('attr',data.list.number);
+		})
+	}
+	//确认按钮的点击
+	Click("sureBtn",function(){
+		var number=$("#goodsNumber").attr('attr');
+		var buynum=$("#buyNumber").val();
+		var attrs='';
+		$('.g_attr').each(function()
+		{
+			var attr_id=$(this).children('input:checked').attr('id')
+			if(attr_id){
+				attrs+=$(this).children('input:checked').attr('id')+',';
+			}
+		})
+		attrs=LastSubstr(attrs);//去除后面的,
+		
+		if(!attrs){
+			mui.toast('请选择商品规格');
+			return ;
+		}else{
+			var attr_len=$('.g_attr').length;
+			var chose_len=attrs.split(',');
+			if(parseInt(attr_len)>chose_len.length){
+				mui.toast('商品规格选择不完整');
+			    return ;
+			}
+		}
+		if(parseInt(number)<1 || parseInt(number)<parseInt(buynum)){
+			mui.toast('库存不足');
+			return ;
+		}else{
+			is_login({name:13227677367,password:123456},function(loginData)
+			{
+				console.log("商品详情页，判断是否登陆："+JSON.stringify(loginData));
+				if(loginData.list.id > 0)
+				{
+					mui.getJSON(CART_INFO,{goods_id:goods_id,attr_id:attrs},function(data){
+						if(data.list.number <= 0)
+						{
+							mui.toast("所选规格商品库存不足");
+						}
+						else
+						{
+							console.log("{goods_id:"+goods_id+",number:"+buynum+",attr_id:"+attrs+"}");
+							mui.getJSON(CART_ADD,{goods_id:goods_id,attr_id:attrs,number:buynum},function(data)
+							{
+								console.log(JSON.stringify(data));	
+								if(data.list.code == 0)
+								{
+									mui.openWindow({
+										url:'gouwuche.html',
+										id:'gouwuche.html'
+									})
+								}
+								else
+								{
+									mui.toast(data.list.msg);
+								}
+							})
+						}
+					})
+				}else{
+					mui.toast("请先登录");
+				}
+			})
+		}		
+	})
+	
+	function choosemater(obj)
+	{
+		mui("#material h4").each(function(){
+			this.style.background="none";
+			this.style.color="#000";
+		})
+		obj.style.background="#000";
+		obj.style.color="#fff";
+	}
+</script>
+</html>

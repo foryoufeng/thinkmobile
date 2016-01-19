@@ -1,0 +1,28 @@
+.mui-mineInfo{width: 100%; height: 90px; background: #fff;}
+.mui-mineInfo img#mui-headerImg{width: 55px; height: auto; border-radius: 50%; margin: 17.5px 1% 17.5px 4%; border: 2px #000 solid;}
+.mui-mineInfo h3#mui-name{float: right; line-height: 80px; font-size: 1.3rem; width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: normal;}
+.mui-mineInfo img#mui-setting{ float: right; width: 25px; height: 25px; margin: 32.5px 4%; padding: 0;}
+
+.mui-myOrder{width: 100%; height: 120px; background: #fff; margin-top: 15px;}
+.mui-myOrder-title{ width: 100%; height: 50px; border-bottom: 1px #e5e5e5 solid;}
+.mui-myOrder-title h3#mui-myOrderTxt{ float: left; line-height: 40px; font-size: 1.1rem; padding-left: 4%; font-weight: normal;}
+.mui-myOrder-title h4#mui-allOrderTxt{ float: right; line-height: 40px; font-size: 0.9rem; padding-right: 4%; color: #666666; font-weight: normal;}
+.mui-myOrder-title h4#mui-allOrderTxt span{ font-size: 0.9rem;;}
+
+.mui-myOrder-list{width: 100%; height: 70px;}
+.mui-myOrder-list ul{ width: 100%; margin: 0; padding: 0;}
+.mui-myOrder-list ul li{float: left; width: 20%; list-style: none; height: 70px; text-align: center; font-size: 0.8rem; color: #121212;}
+.mui-myOrder-list ul li img{width: 25px; height: auto; padding-top: 13px;}
+
+
+.mui-list-down{ width: 100%; height: auto; margin-top: 15px;}
+.mui-list-down .mui-card{width: 100%; margin: 0; padding: 0; border-radius: 0;}
+.mui-list-down .mui-card ul.mui-table-view{width: 100%; margin: 0; padding: 0;}
+.mui-list-down .mui-card ul.mui-table-view li{ height: 50px; border-bottom: 1px #e5e5e5 solid; padding: 0 4%;}
+.mui-list-down .mui-card ul.mui-table-view li h3{float: left; font-size: 1.1rem; line-height: 40px; font-weight: normal; color: #121212;}
+.mui-list-down .mui-card ul.mui-table-view li span{float: right; line-height: 50px; font-weight: normal; color: #666;}
+.mui-list-down .mui-card ul.mui-table-view li span#shuliang{ float: right; width: auto; padding: 0 3%; height: 30px; background: #e5e5e5; margin-top: 10px; text-align: center; line-height: 30px; border-radius: 15px; font-size: 0.8rem;}
+
+img#camera{width: 20%; height: auto; margin: 20% 40%;}
+
+.mui-badge{ padding: 2px 4px;}

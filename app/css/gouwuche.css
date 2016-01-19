@@ -1,0 +1,90 @@
+.headright{  font-size: 1rem; float: right; padding-top: 13px;}
+.headerp1{ float: left; margin-right: 15px; color: #000;}
+.mui-action-back{ color: #000;}
+.mui-tab-item{ color: #000;}
+
+.gouwuchecontent { position: relative; margin-top: 15px; margin-bottom: 0px; padding-left: 0; list-style: none; background-color: #fff;}
+.gouwuchetop{ height: 60px; }
+.biaoti{width: 100%; height: 54px; padding-left: 34px;}
+.biaoti img{width: 25px; height: auto; float: left; margin: 10px;}
+.biaoti h4{font-weight: normal; line-height: 45px; font-size: 0.8rem;}
+/*复选框居左的距离*/
+.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before {
+    margin-left: -7px;
+}
+.mui-table-view .mui-media-object { line-height: 90px; max-width: 90px; height: 90px;}
+.mui-media-body{margin-top: 0px;}
+.mui-media-bodyp{ height: 38px; font-size: 0.8rem; text-align: justify; color: #121212; overflow:hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; word-break: break-all;}
+.mui-ellipsis{ font-size: 0.8rem; margin-top: 5px;}
+.mui-ellipsis2{ color: #f69600; font-size: 1rem; margin-top: 5px;}
+.mui-ellipsis-2span{ float: right; color: #000;}
+.mui-table-view:after { background-color: #fff;}
+/*距底部的距离*/
+.mui-bar-nav~.mui-content {
+    padding-bottom: 65px;
+}
+
+.mui-table-view-cell {
+    position: relative;
+    padding: 15px 0px;
+}
+#fuxuankuang{     
+	height: 90px;
+    line-height: 65px;}
+.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio] {
+    left: 5px;
+}
+.mui-checkbox.mui-left label, .mui-radio.mui-left label {
+    padding-left: 50px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.mui-table-view-cell>a:not(.mui-btn) {
+    margin: 0px -30px;
+}
+.mui-checkbox input{ padding: 10px;}
+
+.mui-media-object .mui-pull-left{ max-width: 80px;}
+
+
+#zhifu{ float: left; font-size: 0.8rem;}
+#zhifu label{ padding-top: 15px; font-size: 0.8rem;}
+.footerright{  padding-top: 15px; font-size: 0.8rem; float: left;}
+.footerright span{ color: #f69600; padding-right: 10px;}
+.buttonjiesuan{ 
+	background: #000;
+    padding: 15px 20px;
+    border: 1px #000 solid;
+    border-radius: 0px;
+    margin-right: 0%;
+    float: right;
+    color: #fff;
+    }
+    
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before {
+    color: #f69600;
+    
+}
+.gwccontent{ padding: 0px;
+    padding-left: 45px;
+    padding-right: 10px;
+    padding-top: 0px;
+    }
+
+/*消息弹框*/
+.mui-popover .mui-table-view{ background: #000;}
+.mui-popover.mui-bar-popover .mui-table-view .mui-table-view-cell>a:not(.mui-btn) {
+    margin: -11px -15px -11px -15px;
+    color: #fff;
+}
+.mui-popover .mui-popover-arrow:after {
+    background: #000;}
+.mui-popover .mui-table-view {
+    border-radius: 0px;}
+.mui-popover.mui-bar-popover .mui-table-view {
+    width: 145px;
+    float: right;
+}
+
+
+

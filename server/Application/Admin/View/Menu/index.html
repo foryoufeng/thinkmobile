@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/style.css" />
+		<!--数据分页样式--张建强-->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/page.css" />
+
+		<style type="text/css">
+			body {
+				padding-bottom: 40px;
+			}
+			
+			.sidebar-nav {
+				padding: 9px 0;
+			}
+			
+			@media (max-width: 980px) {
+				/* Enable use of floated navbar text */
+				.navbar-text.pull-right {
+					float: none;
+					padding-left: 5px;
+					padding-right: 5px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+	<form class="form-inline definewidth m20" action="/index.php/admin/Menu/generate.html" method="get">
+		微信菜单：
+		<button type="submit" class="btn btn-primary">生成菜单</button>
+	</form>
+		<table class="table table-bordered table-hover definewidth m10">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>名称</th>
+					<th>内容</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<foreach name="list" key="k" item="v">
+				<tr>
+					<td>{$v.id}</td>
+					<td>{$v.name}</td>
+					<td>{$v.url}</td>
+					<td>
+						<a href="__URL__/save/id/{$v.id}">编辑</a>
+						<a href="javascript:;" onclick="if(confirm('确定删除吗？'))location.href='__URL__/del/id/{$v.id}'">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+	</body>
+
+</html>

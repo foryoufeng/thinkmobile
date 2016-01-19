@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/mine.css"/>
+    
+    <script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/baiduTemplate.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<div class="mui-content"> 
+	    <div class="mui-mineInfo" id="myInfoId"></div>
+	    	<script type="text/html" id="myInfoHtml">
+	    		<img src="images/mine/3.png" id="mui-headerImg"/><!--images/mine/3.png-->
+		    	<img src="images/mine/mine_03.png" id="mui-setting"/>
+		    	<h3 id="mui-name"><%=data.list.user_name%></h3>
+	    	</script>
+	    	
+	    
+	    <div class="mui-myOrder">
+	    	<div class="mui-myOrder-title">
+	    		<h3 id="mui-myOrderTxt">我的订单</h3>
+	    		<h4 id="mui-allOrderTxt">查看我的全部订单<span class="mui-icon mui-icon-arrowright"></h4>
+	    	</div>
+	    	<div class="mui-myOrder-list">
+	    		<ul id="luchengSLId"></ul>
+	    			<script type="text/html" id="luchengSLHtml">
+	    				<!--待付款判断-->
+	    				<%if(data.list.wpay == 0){%>
+	    					<li><img src="images/mine/mine_07.png"/><br />待付款</li>
+	    				<%}else{%>
+	    					<li><img src="images/mine/mine_07.png"/><span class="mui-badge mui-badge-warning"><%=data.list.wpay%></span><br />待付款</li>
+	    				<%}%>
+	    				
+	    				<!--待发货判断-->
+	    				<%if(data.list.wsend == 0){%>
+	    					<li><img src="images/mine/mine_09.png"/><br />待发货</li>
+	    				<%}else{%>
+	    					<li><img src="images/mine/mine_09.png"/><span class="mui-badge mui-badge-warning"><%=data.list.wsend%></span><br />待发货</li>
+	    				<%}%>
+	    				
+	    				<!--待收货判断-->
+	    				<%if(data.list.wget == 0){%>
+	    					<li><img src="images/mine/mine_11.png"/><br />待收货</li>
+	    				<%}else{%>
+	    					<li><img src="images/mine/mine_11.png"/><span class="mui-badge mui-badge-warning"><%=data.list.wget%></span><br />待收货</li>
+	    				<%}%>
+	    				
+	    				<!--待评论判断-->
+	    				<%if(data.list.wcomment == 0){%>
+	    					<li><img src="images/mine/mine_13.png"/><br />待评价</li>
+	    				<%}else{%>
+	    					<li><img src="images/mine/mine_13.png"/><span class="mui-badge mui-badge-warning"><%=data.list.wcomment%></span><br />待评价</li>
+	    				<%}%>
+		    			<li><img src="images/mine/mine_15.png"/><br />退款/售后</li>
+	    			</script>
+	    			
+	    	</div>
+	    </div>
+	    
+	    <div class="mui-list-down">
+	    	<div class="mui-card">
+	    	    <ul class="mui-table-view">
+	    	        <li onclick='openPage("myCustom.html")'>
+	    	        	<h3>我的定制</h3><span class="mui-icon mui-icon-arrowright"></span>
+	    	        </li>
+	    	        <li onclick='openPage("myattention.html")'>
+	    	        	<h3>我的关注</h3><span class="mui-icon mui-icon-arrowright"></span>
+	    	        </li>
+	    	        <li onclick='openPage("myCollection.html")'>
+	    	        	<h3>我的收藏</h3><span class="mui-icon mui-icon-arrowright"></span>
+	    	        </li>
+	    	        <li id="cartId" onclick='openPage("gouwuche.html")'></li>
+	    	        <script type="text/html" id="cartHtml">
+	    	    		<h3>我的购物车</h3><span class="mui-icon mui-icon-arrowright"></span><span id="shuliang">新增<%=data.list.cart%>件商品</span>
+	    	    	</script>
+	    	    </ul>
+	    	</div>
+	    	
+	    </div>
+	    <img src="images/mine/mine_23.png" id="camera"/>
+	    
+	    <div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+		    <!-- 可选择菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#">拍照</a>
+		      </li>
+		      <li class="mui-table-view-cell">
+		        <a href="#">相册</a>
+		      </li>
+		    </ul>
+		    <!-- 取消菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#sheet1"><b>取消</b></a>
+		      </li>
+		    </ul>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	Get(IS_LOGIN,{name:'13227677367',password:'123456'},function(loginData){
+		if(loginData.list.id > 0)
+		{
+			Get(USER_INFO,"",function(data)
+			{
+				if(data != 0 )
+				{ 
+					var bt = baidu.template;
+					var myInfohtml = bt('myInfoHtml',{data:data});
+					var luchengSLHtml = bt('luchengSLHtml',{data:data});
+					var cartHtml = bt('cartHtml',{data:data});
+					
+					document.getElementById('myInfoId').innerHTML = myInfohtml;
+					document.getElementById('luchengSLId').innerHTML = luchengSLHtml;
+					document.getElementById('cartId').innerHTML = cartHtml;
+				}else{
+					mui.toast("个人信息数据读取失败！");
+				}
+			});
+		}else{
+			mui.toast("请先登录");
+		}
+	});				
+	
+	document.getElementById("camera").addEventListener("tap",function(){
+		mui("#sheet1").popover("toggle");
+	});
+	
+	document.getElementById("mui-allOrderTxt").addEventListener("tap",function(){
+		openPage('myOrder.html');
+	})
+	
+	function openPage(page)
+	{
+		mui.openWindow({
+			url:page,
+			id:page
+		})
+	}
+</script>
+</html>

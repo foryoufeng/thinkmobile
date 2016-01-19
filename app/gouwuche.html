@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>购物车</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/gouwuche.css" rel="stylesheet" />
+   
+    <script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/baiduTemplate.js" type="text/javascript" charset="UTF-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style>
+		.mui-bar-popover {
+			width: 30%;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" id="header">
+    	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    	<h1 class="mui-title" id="title">购物车<span id="gwcShuLiang">[]</span></h1>
+    	<div class="headright">
+	    	<p class="headerp1">编辑</p>
+	    	<a class="mui-tab-item" href="#Popover_2">●●●</a>
+	    </div>
+	</header>  
+	
+	<div id="Popover_2" class="mui-popover mui-bar-popover">
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a href="#">消息中心</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#">返回中心</a>
+				</li>
+			</ul>
+	</div>
+	
+	<div class="mui-content" id="cart"></div>
+	<script type="text/x-handlebars-template" id="shopp">
+		{{#each list.brand}}
+		<div id="maijia">
+			<div class="gouwuchetop">
+				<div class="mui-input-row mui-checkbox mui-left">
+  					<input name="checkbox1" value="Item 1" class="pbrand_{{brand_id}}" type="checkbox" id="selectOneAll{{addIndexAttr @index}}" onchange="selectOneAll(this,{{brand_id}})">
+					<div class="biaoti">
+						<img class="mui-media-object mui-pull-left" src="images/gouwuche/ren2_07.jpg" width="6%"><h4>{{brand_name}}</h4>
+					</div>
+				</div>
+			</div>
+			<ul class="mui-table-view brand_{{brand_id}} brand_p" cls="brand_{{brand_id}}">
+			
+			{{#each goods}}
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-input-row mui-checkbox mui-left">
+					
+						<input name="checkbox2" value="Item 1" class="good child" type="checkbox" recid="{{rec_id}}" gnum="{{goods_number}}" gprice="{{goods_price}}" onchange="selectOne()">
+					
+  					
+	  				<div class="gwccontent">
+	  					<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="images/gouwuche/gwc_03.jpg">
+							<div class="mui-media-body">
+								<p class="mui-media-bodyp">{{goods_name}}</p>
+								<p class='mui-ellipsis'>{{goods_attr}}</p>
+								<p class='mui-ellipsis2'>￥{{goods_price}}<span class="mui-ellipsis-2span">x{{goods_number}}</span></p>
+							</div>
+						</a>
+	  				</div>	
+				</div>
+			</li>
+			{{/each}}
+			</ul>
+		</div>	
+		{{/each}}
+	</script>
+
+	<footer class="mui-bar mui-bar-tab">
+	    <div class="gouwuchefooter">
+				<div id="zhifu" class="mui-checkbox mui-left">
+  					<input name="checkbox1" value="Item 1" type="checkbox" style="top: 0px;" id="selectAll" onchange="selectAll()">
+  					<label>全选</label>
+				</div>
+				<div class="footerright">合计：<span id="totlePriceDown" count="0">￥0</span>不含运费</div>
+				<button class="buttonjiesuan" onclick="opensureOrder()">结算<span></span></button>
+			</div>
+	</footer>
+<!-- 使用模板 -->
+<script type="text/javascript">
+	Get(CART_LIST,"",function(data)
+		{
+			if(data != 0 )
+			{ 
+				localStorage.setItem("gwcData",JSON.stringify(data));
+				/*获取购物车品牌商品总数*/
+				var goodslength = 0;
+				for(var i=0;i<data.list.brand.length;i++)
+				{
+					goodslength = goodslength + data.list.brand[i].goods.length;
+					console.log("goodslength:::"+goodslength);
+				}
+				document.getElementById("gwcShuLiang").innerHTML = "["+goodslength+"]";
+				
+				/*遍历商品*/
+				var html = Handlebars.compile($("#shopp").html()); 
+				Handlebars.registerHelper("addIndexAttr",function(index,options){
+	          		this._index = index;
+	          		return this._index;
+				})
+				$("#cart").html(html(data));
+
+			}else{
+				alert("购物车数据读取失败！");
+			}
+		});
+</script>
+<script>
+	mui.init({
+		swipeBack:true //启用右滑关闭功能
+	});  
+</script>
+<script>		
+	var index = 0; //判断全选是否选中的索引
+	/**
+	 * 全选 / 全部选
+	 */
+	function selectAll()
+	{
+		if(index==0)
+		{
+			mui("input[type=checkbox]").each(function(){
+				this.checked=true;
+				index=1;
+			})
+			var allPrice=0;
+			$(".good").each(function(){
+			    var num=$(this).attr('gnum');
+		    	var price=$(this).attr('gprice');
+		    	allPrice+=parseInt(num)*price;
+			})
+			$("#totlePriceDown").html("￥"+allPrice);
+			
+		}else{
+			mui("input[type=checkbox]").each(function(){
+				this.checked=false;
+				index=0;
+			})
+			$("#totlePriceDown").html("￥0");
+		}
+	}
+	
+	/*计算某个品牌下全部商品的价格*/
+	function selectOneAll(obj,brand_id)
+	{	
+		var allPrice=0;
+		if($(obj).prop("checked"))//选中
+		{  
+		   var amount=0;
+		   $(".brand_"+brand_id+" .good").each(function(){
+		    	$(this).prop("checked",true);
+		   });
+		}else{//未选中
+			var amount=0;
+			$(obj).prop("checked",false);
+		   $(".brand_"+brand_id+" .good").each(function(){
+		    	$(this).prop("checked",false);
+		   });
+		}
+	     $('.good').each(function(){
+			if($(this).prop('checked')){
+		    	var num=$(this).attr('gnum');
+		    	var price=$(this).attr('gprice');
+		    	allPrice+=parseInt(num)*price;
+		    }
+		})
+		$("#totlePriceDown").attr('count',allPrice);
+		$("#totlePriceDown").html("￥"+allPrice);
+	}
+	
+	function selectOne()
+	{
+		var allPrice=0;
+		$('.good').each(function(){
+			if($(this).prop("checked")){
+				var num=$(this).attr('gnum');
+		        var price=$(this).attr('gprice');
+		        var amount=parseInt(num)*price;
+		        allPrice+=amount;
+			}
+		})
+		
+		$("#totlePriceDown").html("￥"+allPrice);
+		//操作品牌单选框选中或者不选中开始
+		$('.brand_p').each(function(){
+			var cls=$(this).attr('cls');
+			var goods='.'+cls+" .good";
+			var flag=true;
+			$(goods).each(function(){
+		    	if(!$(this).prop('checked')){
+		    		flag=false;
+		    	}
+		   });
+		   $('.p'+cls).prop("checked",flag);
+		})
+		//操作品牌单选框选中或者不选中结束
+	}	
+	/*结算点击事件*/
+	function opensureOrder()
+	{
+		var flag=false;
+		var recIdData='';
+		$('.good').each(function(){
+			if($(this).prop('checked')){
+		    		flag=true;
+		    		recIdData+=$(this).attr('recid')+',';
+		    }
+		})
+		recIdData=LastSubstr(recIdData);
+		mui.toast(recIdData);
+		return;
+		if(flag)
+		{
+			mui.openWindow({
+				url:"sureOrder.html",
+				id:"sureOrder.html",
+				extras:{"recIdData":recIdData,"goodsTotalPrice":goodsOneTotalPrice}
+			})
+			console.log("购物车页面recIdData：：："+JSON.stringify(recIdData));
+		}else{
+			mui.toast("请选择要结算商品");
+		}
+		
+	}
+</script>
+</body>
+</html>

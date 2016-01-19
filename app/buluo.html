@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/buluo.css"/>
+    <script src="js/baiduTemplate.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<div class="mui-content  mui-scroll-wrapper" id="pullrefresh">
+		<ul id="blog" class="mui-table-view newShowList">
+	    		<!--<li class="mui-table-view-cell mui-media">
+					<img src="images/buluo/1.jpg" id="goodsImg">
+					<h2>「矿区直供」0.75克拉莫桑比克无烧鸽血红宝石戒指</h2>
+					<p>BY-遥远的北山</p>
+					<span><a class="share">分享</a></span>
+				</li>
+	    	</ul>-->
+	    		<!--<script id="buluo" type="text/html">
+		    		<%for(var i=0; i<data.list.length;i++){%>
+			    		<li class="mui-table-view-cell mui-media">
+							<img src="images/buluo/1.jpg" id="goodsImg">
+							<h2><%=data.list[i].brand_name%></h2>
+							<p>BY-<%=data.list[i].brand_name%></p>
+							<span><a class="share">分享</a></span>
+						</li>
+					<%}%>
+				</script>-->
+	        	<li class="mui-table-view-cell mui-media">
+					<img src="images/buluo/1.jpg" id="goodsImg">
+					<h2>「矿区直供」0.75克拉莫桑比克无烧鸽血红宝石戒指</h2>
+					<p>BY-遥远的北山</p>
+					<span><a class="share">分享</a></span>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<img src="images/buluo/2.jpg" id="goodsImg">
+					<h2><a onclick="openThemeDetail()">我愿为莲 · 莲蓬翡翠吊坠</a> </h2>
+					<p>BY-Sarah小黄酱</p>
+					<span><a class="share">分享</a></span>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<img src="images/buluo/3.jpg" id="goodsImg">
+					<h2>凡人无法评价神：君临所有题材的藤子 · F · 不二雄</h2>
+					<p>BY-林真心的徐太宇</p>
+					<span><a class="share">分享</a></span>
+				</li>
+				
+	    	</ul>
+		<div class="mui-scroll newShow">
+			
+			<!--<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					
+					<ul class="mui-table-view mui-table-view-chevron">
+						
+					</ul>
+				</div>
+			</div>
+			-->
+			
+	    </div>
+	   
+	    	<ul id="modal" class="modal">
+				<li><a href="#"><img src="images/buluo/share_1.png"/>微信朋友圈</a></li>
+				<li><a href="#"><img src="images/buluo/share_2.png"/>微信好友</a></li>
+				<li><a href="#"><img src="images/buluo/share_3.png"/>微博</a></li>
+				<li><a href="#"><img src="images/buluo/share_4.png"/>QQ好友</a></li>
+				<li><a href="#"><img src="images/buluo/share_5.png"/>邮箱</a></li>
+				<li><a href="#"><img src="images/buluo/share_6.png"/>有道云笔记</a></li>
+				<span><img id="close" src="images/buluo/close.png"/></span>	
+			</ul>
+		
+	</div>
+<script type="text/javascript">
+
+	/*mui.init({
+				/*pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});*/
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			/*function pulldownRefresh() {
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell mui-media');
+					for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell mui-media';
+						li.innerHTML = '<img src="images/buluo/1.jpg" id="goodsImg"><h2><%=data.list[i].brand_name%></h2><p>BY-<%=data.list[i].brand_name%></p><span><a class="share">分享</a></span>';
+						//下拉刷新，新纪录插到最前面；<a class="mui-navigate-right">Item ' + (i + 1) + '</a>
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			var count = 0;*/
+			/**
+			 * 上拉加载具体业务实现
+			 */
+		/*	function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell mui-media');
+					for (var i = cells.length, len = i + 2; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell mui-media';
+						li.innerHTML = '<img src="images/buluo/1.jpg" id="goodsImg"><h2><%=data.list[i].brand_name%></h2><p>BY-<%=data.list[i].brand_name%></p><span><a class="share">分享</a></span>';
+						table.appendChild(li);
+					}
+				}, 1500);
+			}
+		
+		*/
+//	var url='http://123.56.44.104:81/';
+//	mui.getJSON("http://123.56.44.104:81/ibaoh/index.php/brand/index",function(data){
+//		var bt=baidu.template;
+//		var html=bt('buluo',{data:data});
+//		document.getElementById('blog').innerHTML=html;
+//	})
+	mui("li").on("tap",".share",share);
+	mui("ul").on("tap","#close",close);
+	function share()
+	{
+  		document.getElementById('modal').style.display="block";
+	};
+	
+	document.getElementById("close").addEventListener("tap",function()
+	{
+		document.getElementById("modal").style.display = "none";
+	})
+	
+	document.querySelector("ul#blog li img#goodsImg").addEventListener("tap",function(){
+		mui.openWindow({
+  			url:'goodsdetail.html',
+  		    id:'goodsdetail.html'
+  		});
+	});
+	
+	function openThemeDetail()
+	{
+		mui.openWindow({
+
+			url:'themeDetail.html',
+			id:'themeDetail.html'
+
+		})
+	}
+</script>   
+</body>
+</html>

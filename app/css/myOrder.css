@@ -1,0 +1,46 @@
+h4{margin: 0; padding: 0; font-weight: normal; font-size: 0.8rem;}
+.mui-col-xs-4{width: 25%;}
+.mui-control-item{ background: #fff;}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{background: #fff; color: #e59203;}
+.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{background: #e59203;}
+
+.mui-slider-group .mui-slider-item{margin-top: 15px;}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: 0;}
+
+.mui-content .goodsDesc{width: 100%; height: auto; border: 0; margin-bottom: 15px;}
+.mui-content .goodsDesc .goodsTitle{width: 100%; height: 45px; background: #fff;}
+.mui-content .goodsDesc .goodsTitle img{width: 25px; height: 25px; float: left; margin: 10px; border-radius: 50%;}
+.mui-content .goodsDesc .goodsTitle h4{font-weight: normal; line-height: 45px; font-size: 0.8rem; margin: 0; padding: 0; width: 50%; float:left; text-overflow: ellipsis; overflow: hidden;white-space:nowrap;}
+.mui-content .goodsDesc .goodsTitle h5{float: right; line-height: 45px; margin: 0; padding: 0;font-size: 0.8rem; margin-right: 10px; color: #e59203;} 
+.mui-content .goodsDesc .goodsInfoDesc{width:100%; height: auto;}
+.mui-content .goodsDesc .goodsInfoDesc ul{background: none;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a img{ width: 27%; margin-left: -2px; margin-right: 10px; margin-top: 2px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#title{ color: #000; font-size: 0.8rem; height: 40px; margin-left:30% ; white-space:pre-wrap; overflow: hidden;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#color{ width: 60%; font-size: 0.7rem; padding-left: 2px; line-height: 25px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#color span{margin-left: 10px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#price{font-size: 1rem; color: #595959; line-height: 30px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#price span{float: right;}
+
+.mui-content .goodsDesc #mode{width: 100%; height: 50px; background: #fff; border-bottom: 1px #e5e5e5 solid;}
+.mui-content .goodsDesc #mode h4#totalGoods{width: 27%; text-align: right; line-height: 48px; float: left;} 
+.mui-content .goodsDesc #mode h4#totlePrice{width: 71%; float: right; margin: 0; line-height: 45px; text-align: right; padding-right: 10px;}
+
+.mui-content .goodsDesc #mode h4#totlePrice span{font-size: 1rem; margin-right: 5px;}
+#mode button{height: 35px; margin: 7.5px 10px 7.5px 0; border-radius: 20px; float: right; min-width: 80px;}
+#mode button.payBtn{color: #e59203; border: 1px #e59203 solid;}
+
+/*评论弹出层*/
+.commentDiv{width: 100%; height: 100%; background: rgba(0,0,0,.7); position: absolute; top: 0; z-index: 100; color: #1f1f1f; display: none;}
+.commentDiv #postComment{width: 80%; margin: auto; background: #fff; min-height: 200px; margin-top: 40%; border-radius: 15px;}
+.commentDiv #postComment h4{ font-size: 1rem; text-align: center; line-height: 45px;}
+#textarea{font-size: 0.8rem; height: auto; padding: 5px; border-radius: 7px; margin-bottom: 0;}
+.commentDiv #postComment #score{width: 100%; height: 45px;}
+.commentDiv #postComment #score span#scoreTxt{line-height: 45px; font-size: 1rem; margin-left: 15px; margin-right: 10px;}
+.commentDiv #postComment #score img{width: 18px; height: auto;}
+.commentDiv #postComment #btn{width: 100%; border-top: 1px #E5E5E5 solid;}
+.commentDiv #postComment #btn button{width: 49%; border: 0; color: #000; bottom: 0;height: 50px; font-size: 1rem; border-radius: 0;}
+.commentDiv #postComment #btn button:nth-child(2){width:49.1%; border-left: 1px #E5E5E5 solid; color: #e59203;}
+.commentDiv #postComment #btn button:active{background: none; color: #e59203;}
+
+.nostar{background:url(../images/goodsdetail/nostar.png) no-repeat; background-size:18px auto;}
+.star{background:url(../images/goodsdetail/star.png) no-repeat; background-size:18px auto;}

@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes'>
+		<title>凝宝斋</title>
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/index.css">
+		<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-2.1.4.min.js"></script>
+	</head>
+
+	<body>
+		<div class="headTitle">
+			<h4>微信在线支付</h4>
+		</div>
+
+		<div class="goodsDiv">
+
+			<div class="goodsInfoBigDiv">
+				<div class="goodsInfo">
+					<h4 class="goosCodeText">商品编号：</h4>
+					<h4 class="priceText"><span class="badge" style="background-color: #0bed96;">0</span></h4>
+					<input type="text" class="form-control goodsCode" placeholder="请输入商品编号" value="QWERTYUIOO">
+				</div>
+			</div>
+			<div class="addgoods" style="display: none">
+				<h4 class="goosCodeText">商品编号：</h4>
+				<h4 class="priceText indel" onclick="indel(this)"><span class="badge" style="background-color: #0bed96;">0</span><span class="label label-danger">删除</span></h4>
+				<input type="text" class="form-control goodsCode" placeholder="请输入商品编号">
+			</div>
+			<img src="__PUBLIC__/Index/images/add_03.png" class="img-rounded addImg" onClick="addNewGoods()">
+			<h4 class="addGoosText">点击添加新商品</h4>
+		</div>
+
+		<div class="pointsDiv">
+			<div class="pointDeduction">
+				<h4 class="pointDeductionTxt">积分抵扣</h4>
+				<input type="text" class="form-control usePoints" value="0">
+				<h4 class="usePointsTxt">使用积分</h4>
+				<p>可使用积分：{$jifen}</p>
+			</div>
+			<h4 class="pointWarmTxt">消费满20元获得1积分</h4>
+			<h4 class="pointWarmTxt">1积分可抵用1元</h4>
+			<div class="payDiv">
+				<h3 class="payMoneyTxt">实付金额：</h3>
+
+				<h3 class="payMoney">￥0</h3>
+				<h3 class="allMoney">总价：</h3>
+				<h3 class="goods">已选择了<span class="gcount">0</span>件商品</h3>
+
+			</div>
+		</div>
+
+		<button type="button" class="btn btn-primary payBtn" data-toggle="button">微信支付</button>
+	</body>
+
+	<script>
+//		添加input框
+		function addNewGoods() {
+			var goodsInfoHtml = $(".addgoods").html();
+			$(".goodsInfoBigDiv").append('<div class="goodsInfo">' + goodsInfoHtml + '</div>');
+		}
+function indel(obj){
+		obj.parentNode.style.display="none";
+	    $(".goodsInfo[style]").remove();
+}
+//		循环发ajax获取产品的价格
+		$(function() {
+			run();
+			function run() {
+				interval = setInterval(chat,"3000");
+			}
+			function chat(){
+				$(".goodsInfo .goodsCode").each(function(i){
+					var bh = $(this).val();
+					var sthis=$(this);
+					if(bh.length>5){
+						$.ajax({
+							type:"post",
+							url: "/index.php/Cp/ajax",
+							data : {bh : bh},
+							dataType:'json',
+							success:function(data){
+								if(data.info) {
+									sthis.prev().children("span:first-child").html(data.info);
+									//alert("aa")
+									$(".payBtn").css('background','#fc4902');
+								}else{
+									sthis.prev().children("span:first-child").html(0);
+								}
+								var count=$(".badge").length-1;
+								$(".gcount").html(count);
+								var all=parseFloat(0);
+								for(var i=0;i<count;i++){
+									var price=$(".badge").eq(i).html();
+									all+=parseFloat(price);
+								}
+								if(count==1 && all=='0'){
+									$(".payBtn").removeAttr("style");
+								}
+								$(".payMoney").html('￥'+all);
+							}
+						});
+					}
+				});
+			}
+			$(".payBtn").click(function(){
+				var flag=$(this).attr("style");
+				var point=0;
+				point=parseInt($(".usePoints").val());
+				if(point){
+					if(point>{$jifen}){
+						alert("使用积分不能大于可用积分");
+						$(".usePoints").val(0);
+						return false;
+					}
+				}else{
+					point=0;
+				}
+				if(flag){
+					var code=new Array();
+					$(".goodsInfo .goodsCode").each(function(i){
+						var bh = $(this).val();
+					   code[i]=	bh;
+					})
+					$.post('/index.php/Pay',{'point':point},function(data){
+						if(data.status==1){
+							window.close();
+							window.location.href="/index.php/Pay/show?code="+code+"&point="+point;
+						}else{
+							if(data.url=='add'){
+								window.location.href="/index.php/User/address?add=add";
+							}else{
+								alert(data.info);
+							}
+						}
+					})
+				}else{
+					alert("请输入您的商品编号");
+				}
+			});
+		});
+	</script>
+
+</html>

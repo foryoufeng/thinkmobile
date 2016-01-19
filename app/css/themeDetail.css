@@ -1,0 +1,16 @@
+.mui-allInfo{width: 100%; height: auto; background: #fff; padding-bottom: 4%;}
+.mui-allInfo img#topImg{width: 100%; height: auto; position: relative; z-index: 0;}
+.mui-allInfo img#shareImg{width: 15%; height: auto; position: absolute; top: 24%; z-index: 2; right: 5%;}
+.titleInfo{ width: 95%; margin-left: 5%; border-left: 2px #e5e5e5 solid; margin-top: 7%;}
+.mui-allInfo h2#mui-title,.mui-list h2#mui-title{ width: 100%; font-size: 1.2rem;  padding-left: 3%; color: #121212;}
+.mui-allInfo h4#mui-des,.mui-list h4#mui-des{width: 100%; font-size: 1rem; color: #595959; line-height: 20px; padding: 2% 6% 0 3%; font-weight: normal; text-align: justify;}
+
+h1#month{ height: 50px; background: #fff; margin: 0; padding: 0; margin-top: 5%; font-size: 2rem; line-height: 50px; padding-left: 5%;}
+h1#month span{ font-size: 1rem; font-weight: normal; padding-left: 2%;}
+
+.mui-card{margin: 0; padding: 0; border: 0; border-radius: 0; width: 100%; position: relative;}
+.mui-card ul{width: 100%; margin: 0; padding: 0;}
+.mui-card ul li{width: 100%; border-top: 1px #f2f2f2 solid; padding: 5% 5%;}
+.mui-card ul li img{width: 100%; height: auto;}
+
+img#back{position: fixed; bottom: 1.5%; width: 15%; height: auto; left: 4%;}

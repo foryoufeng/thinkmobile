@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
+		<title>我的购买信息</title>
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/myBuyInfo.css">
+	</head>
+
+	<body>
+		<div class="bannerDiv">
+			<img src="__PUBLIC__/Index/images/mybuyinfo_02.jpg" alt="我的购买信息">
+			<h4>我的购买信息</h4>
+			<div class="buySL">
+				<h2>{$count}<br><p>已购买<span>{$count}</span>件</p></h2>
+			</div>
+		</div>
+
+		<div class="buyRecords">
+			<a href="order/log.html"><h4 class="buyRecordsTxt">购买记录</h4>
+			<span class="glyphicon glyphicon-chevron-right"></span></a>
+		</div>
+
+		<div class="buyInfo">
+			<div class="JGinfo">
+				<h5>购买信息</h5>
+				<h4>请输入您的手机号</h4>
+				<form action="" method="post">
+					<input type="text" name="tel" class="form-control userTel" placeholder="">
+					<button type="submit" class="btn btn-primary selectBtn" data-toggle="button">点击查询</button>
+				</form>
+			</div>
+			<foreach name="data" key="k" item="v">
+				<div class="buyDetails">
+					<div class="one">
+						<h5>购买时间：</h5>
+						<input type="text" class="form-control" value="{$v.time|date="Y-m-d",###}" readonly="readonly">
+					</div>
+					<div class="second">
+						<div class="two">
+							<h5>产品明细：</h5>
+							<textarea type="text" class="form-control" readonly="readonly">{$v.info}</textarea>
+						</div>
+					</div>
+
+					<div class="three">
+						<div class="left">
+							<div class="one">
+								<h5>购买金额：</h5>
+								<input type="text" class="form-control" value="{$v.total}" readonly="readonly">
+							</div>
+							<div class="one">
+								<h5>购买数量：</h5>
+								<input type="text" class="form-control" value="{$v.count}" readonly="readonly">
+							</div>
+							<div class="one">
+								<h5>邮寄时间：</h5>
+								<input type="text" class="form-control" value="<if condition="$vo.express gt 0">{$vo.express|date="Y-m-d",###}<else/>未邮寄</if>" readonly="readonly">
+							</div>
+						</div>
+						<div class="right">
+							<img width="100" height="100" src="{$v.img}">
+						</div>
+					</div>
+				</div>
+			</foreach>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/themeDetail.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+      		swipeBack:true
+      	});
+    </script>
+</head>
+<body>	
+	<div class="mui-content">
+	    <div class="mui-allInfo">
+	    	<img src="images/themeDetail/themeDetail_01.jpg" id="topImg"/>
+	    	<img src="images/themeDetail/themeDetail_04.png" id="shareImg"/>
+	    	<div class="titleInfo">
+	    		<h2 id="mui-title">我愿为莲 · 莲蓬翡翠合辑</h2>
+	    		<h4 id="mui-des">超美的一批翡翠莲蓬，全部一准的冰底，还有几枚有飘花，起荧莹润，太美。只有这十几个。</h4>
+	    	</div>
+	    </div>
+	    
+	    <h1 id="month">05<span>Dec</span></h1>
+	    <div class="mui-card mui-list">
+	        <ul class="mui-table-view">
+	            <li>
+	                <img src="images/themeDetail/themeDetail_08.jpg"/>
+	                <h2 id="mui-title">我愿为莲 · 莲蓬翡翠合辑</h2>
+	    			<h4 id="mui-des">超美的一批翡翠莲蓬，全部一准的冰底，还有几枚有飘花，起荧莹润，太美。只有这十几个。</h4>
+	            </li>
+	            <li>
+	                <img src="images/themeDetail/themeDetail_12.jpg"/>
+	                <h2 id="mui-title">我愿为莲 · 莲蓬翡翠合辑</h2>
+	    			<h4 id="mui-des">超美的一批翡翠莲蓬，全部一准的冰底，还有几枚有飘花，起荧莹润，太美。只有这十几个。</h4>
+	            </li>
+	            <li>
+	                <img src="images/themeDetail/themeDetail_15.jpg"/>
+	                <h2 id="mui-title">我愿为莲 · 莲蓬翡翠合辑</h2>
+	    			<h4 id="mui-des">超美的一批翡翠莲蓬，全部一准的冰底，还有几枚有飘花，起荧莹润，太美。只有这十几个。</h4>
+	            </li>
+	        </ul>
+	        
+	        <img src="images/themeDetail/themeDetail_18.png" id="back" class="mui-action-back"/>
+	    </div>
+	</div>
+</body>
+<script type="text/javascript">
+	document.getElementById("themeDetail").addEventListener('tap',function(){
+  		mui.openWindow({
+  			url:'themeDetail.html',
+  		    id:'themeDetail'
+  		});
+  	});
+</script>
+</html>

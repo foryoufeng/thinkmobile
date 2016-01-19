@@ -1,0 +1,8 @@
+.mui-table-view{ background: #f0f0f0;}
+.mui-table-view:before{ background-color:#efeff4;}
+.mui-media{ background: url(../images/fenlei/fenlei_02.jpg) no-repeat; background-size: 100% 100%; width: 100%; height: auto; margin-top:20px}
+.mui-tu{margin: 6% 6% 0 6%;width: 88%; height: auto;}
+.mui-wenzi{ max-width: 200px; height: 60px; margin:auto;  margin-top: 20px;}
+.mui-wenzi .mui-wenzi-tu{ float: left; width: 50px;}
+.mui-wenzi .mui-wenzi-tu2{ float: right;  width: 50px;}
+.mui-wenzi .mui-wenzi-p1{text-align: center; width: 100px; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;  font-size: 1.1rem; color: #121212; margin-top: 3px; float: left;}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/css/style.css" />
+		<style type="text/css">
+			body {
+				padding-bottom: 40px;
+			}
+			
+			.sidebar-nav {
+				padding: 9px 0;
+			}
+			
+			@media (max-width: 980px) {
+				/* Enable use of floated navbar text */
+				.navbar-text.pull-right {
+					float: none;
+					padding-left: 5px;
+					padding-right: 5px;
+				}
+			}
+		</style>
+	</head>
+	<form action="" method="post">
+		<table class="table table-bordered table-hover definewidth m10">
+			<tr>
+				<td width="10%" class="tableleft">所属菜单</td>
+				<td>
+					<select name="parent_id">
+						<option value ="0">无父级</option>
+						<volist name="list" id="vo">
+							<option value ="{$vo.id}">{$vo.name}</option>
+						</volist>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td width="10%" class="tableleft">菜单名称</td>
+				<td>
+					<input type="text" name="name" value="{$data.name}"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="tableleft">菜单类型</td>
+				<td>
+					<select name="type">
+						<option value ="1">网站</option>
+						<option value ="2">图文</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="tableleft">内容</td>
+				<td>
+					<input type="text" name="url" value="{$data.url}"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="tableleft"></td>
+				<td>
+					<input type="hidden" name="id" value="{$data.id}"/>
+					<button type="submit" class="btn btn-primary" type="button">保存</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</body>
+
+</html>

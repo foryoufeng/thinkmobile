@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
+		<title>邮寄信息</title>
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/mailInfo.css">
+		<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-2.1.4.min.js"></script>
+	</head>
+
+	<body>
+		<div class="headTitle">
+			<h4>为了保障您的会员权益，请务必填写：</h4>
+		</div>
+		<button type="button" class="btn btn-danger btn-lg btn-block info" style="display: none">
+
+		</button>
+		<form action="" method="post">
+			<div class="telInfo">
+				<div class="name">
+					<h4 class="nameTxt">姓名</h4>
+					<span class="nameT"><input type="text" class="form-control goodsCode" name="name" placeholder="姓名" value="{$address.name}"></span>
+				</div>
+				<div class="tel">
+					<h4 class="telTxt">手机</h4>
+					<span class="telT"><input type="text" class="form-control goodsCode" name="phone" placeholder="手机号" value="{$address.phone}"></span>
+				</div>
+				<div class="address">
+					<h4 class="addressTxt">地址</h4>
+					<span class="addressT"><textarea type="text" class="form-control goodsCode" name="address" placeholder="填写完整的收货地址">{$address.address}</textarea></span>
+				</div>
+			</div>
+			<input type="submit" class="btn btn-primary saveBtn" data-toggle="button" value="保存" />
+			<input type="hidden" class="form-control goodsCode" name="user_id" placeholder="姓名" value="{$address.id}">
+			<input type="hidden" class="form-control goodsCode" name="add" placeholder="姓名" value="{$add}">
+		</form>
+	</body>
+<script>
+	$(function(){
+		$(".saveBtn").click(function(){
+			$(".info").css("display","none");
+			var name=$("input[name='name']").val();
+			var phone=$("input[name='phone']").val();
+			var address=$("textarea[name='address']").val();
+			if(!name){
+				$(".info").html("姓名不能为空");
+				$(".info").css("display","block");
+				return false;
+			}
+			if(!phone ||phone.length!=11){
+				$(".info").html("手机格式不正确");
+				$(".info").css("display","block");
+				return false;
+			}
+			if(!address ||address.length<6){
+				$(".info").html("地址长度不能小于6");
+				$(".info").css("display","block");
+				return false;
+			}
+			return true;
+		})
+
+	})
+</script>
+</html>

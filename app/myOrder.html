@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/myOrder.css"/>
+    <script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left mui-block"></a>
+	    <h1 class="mui-title">我的订单</h1>
+	</header>
+	
+	<div class="mui-content">
+	    <div class="mui-slider">
+	        <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+	            <a class="mui-control-item mui-active" href="#item1">待付款</a>
+	            <a class="mui-control-item" href="#item2mobile">待发货</a>
+	            <a class="mui-control-item" href="#item3mobile">待收货</a>
+	            <a class="mui-control-item" href="#item4mobile">待评论</a>
+	        </div>
+	        <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+	        <div class="mui-slider-group">
+	            <div id="item1" class="mui-slider-item mui-control-content mui-active">
+	            	<script type="text/x-handlebars-template" id="item1Html">
+	            		{{#each getDataType}}
+		            		<div class="goodsDesc">
+		            			{{#each brand}}
+								<div class="goodsTitle">
+									<img src="http://123.56.44.104:81/data/brandlogo/{{brand_logo}}"/><h4>{{brand_name}}</h4><h5>等待买家付款</h5>
+								</div>
+								<div class="goodsInfoDesc">
+									<ul class="mui-table-view">
+										{{#each goods}}
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-pull-left" src="http://123.56.44.104:81/{{goods_thumb}}">
+												<div class="mui-body">
+													<p id="title">{{goods_name}}</p>
+													<p>{{goods_attr}}</p>
+													<p id="price">￥{{goods_price}}<span>x{{goods_number}}</span></p>
+												</div>
+											</a>
+										</li>
+										{{/each}}
+									</ul>
+								</div>
+								{{/each}}
+								<div id="mode">
+									<h4 id="totalGoods">共计{{goods.length}}件商品</h4>
+									<h4 id="totlePrice">合计：<span>￥{{surplus}}</span>(含运费￥{{shipping_fee}})</h4>
+								</div>
+								<div id="mode">
+									<button type="button" class="mui-btn payBtn">付款</button>
+									<button type="button" class="mui-btn">取消订单</button>
+									<button type="button" class="mui-btn">联系卖家</button>
+								</div>
+							</div>
+						{{/each}}
+	            	</script>
+				</div>
+	            <div id="item2mobile" class="mui-slider-item mui-control-content">
+	            	<script type="text/x-handlebars-template" id="item2mobileHtml">
+	            		{{#each getDataType}}
+		            		{{#each brand}}
+		            		<div class="goodsDesc">
+								<div class="goodsTitle">
+									<img src="http://123.56.44.104:81/data/brandlogo/{{brand_logo}}"/><h4>{{brand_name}}</h4><h5>买家已付款</h5>
+								</div>
+								<div class="goodsInfoDesc">
+									<ul class="mui-table-view">
+										{{#each goods}}
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-pull-left" src="http://123.56.44.104:81/{{goods_thumb}}">
+												<div class="mui-body">
+													<p id="title">{{goods_name}}</p>
+													<p>{{goods_attr}}</p>
+													<p id="price">￥{{goods_price}}<span>x{{goods_number}}</span></p>
+												</div>
+											</a>
+										</li>
+										{{/each}}
+									</ul>
+								</div>
+								<div id="mode">
+									<h4 id="totalGoods">共计{{goods.length}}件商品</h4>
+									<h4 id="totlePrice">合计：<span>￥{{../surplus}}</span>(含运费￥{{../shipping_fee}})</h4>
+								</div>
+								<div id="mode">
+									<button type="button" class="mui-btn">查看物流</button>
+								</div>
+							</div>
+							{{/each}}
+						{{/each}}
+	            	</script>
+	            </div>
+	            <div id="item3mobile" class="mui-slider-item mui-control-content">
+	            	<script type="text/x-handlebars-template" id="item3mobileHtml">
+	            		{{#each getDataType}}
+		            		{{#each brand}}
+		            		<div class="goodsDesc">
+								<div class="goodsTitle">
+									<img src="http://123.56.44.104:81/data/brandlogo/{{brand_logo}}"/><h4>{{brand_name}}</h4><h5>卖家已发货</h5>
+								</div>
+								<div class="goodsInfoDesc">
+									<ul class="mui-table-view">
+										{{#each goods}}
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-pull-left" src="http://123.56.44.104:81/{{goods_thumb}}">
+												<div class="mui-body">
+													<p id="title">{{goods_name}}</p>
+													<p>{{goods_attr}}</p>
+													<p id="price">￥{{goods_price}}<span>x{{goods_number}}</span></p>
+												</div>
+											</a>
+										</li>
+										{{/each}}
+									</ul>
+								</div>
+								<div id="mode">
+									<h4 id="totalGoods">共计{{goods.length}}件商品</h4>
+									<h4 id="totlePrice">合计：<span>￥{{../surplus}}</span>(含运费￥{{../shipping_fee}})</h4>
+								</div>
+								<div id="mode">
+									<button type="button" class="mui-btn payBtn">确认收货</button>
+									<button type="button" class="mui-btn">查看物流</button>
+								</div>
+							</div>
+							{{/each}}
+						{{/each}}
+	            	</script>
+	             </div>
+	            <div id="item4mobile" class="mui-slider-item mui-control-content">
+	            	<script type="text/x-handlebars-template" id="item4mobileHtml">
+	            		{{#each getDataType}}
+		            		{{#each brand}}
+		            		<div class="goodsDesc">
+								<div class="goodsTitle">
+									<img src="http://123.56.44.104:81/data/brandlogo/{{brand_logo}}"/><h4>{{brand_name}}</h4><h5>交易成功</h5>
+								</div>
+								<div class="goodsInfoDesc">
+									<ul class="mui-table-view">
+										{{#each goods}}
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-pull-left" src="http://123.56.44.104:81/{{goods_thumb}}">
+												<div class="mui-body">
+													<p id="title">{{goods_name}}</p>
+													<p>{{goods_attr}}</p>
+													<p id="price">￥{{goods_price}}<span>x{{goods_number}}</span></p>
+												</div>
+											</a>
+										</li>
+										{{/each}}
+									</ul>
+								</div>
+								<div id="mode">
+									<h4 id="totalGoods">共计{{goods.length}}件商品</h4>
+									<h4 id="totlePrice">合计：<span>￥{{../surplus}}</span>(含运费￥{{../shipping_fee}})</h4>
+								</div>
+								<div id="mode">
+									<button type="button" class="mui-btn payBtn" id="commentBtn">评价</button>
+									<button type="button" class="mui-btn">删除订单</button>
+								</div>
+							</div>
+							{{/each}}
+						{{/each}}
+	            	</script>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	<div class="commentDiv" id="commentDiv">
+	    <div id="postComment">
+	    	<h4>发表评论</h4>
+	    	<div class="mui-input-row" style="margin: 0 15px;">
+				<textarea id="textarea" rows="2" placeholder="发表下感受吧，对其他人帮助很大哦"></textarea>
+			</div>
+	    	<div id="score">
+	    		<span id="scoreTxt">
+	    			宝贝评分
+	    		</span>
+	    		<img src="images/goodsdetail/nostar.png" class="nostar"/>
+	    		<img src="images/goodsdetail/nostar.png" class="nostar"/>
+	    		<img src="images/goodsdetail/nostar.png" class="nostar"/>
+	    		<img src="images/goodsdetail/nostar.png" class="nostar"/>
+	    		<img src="images/goodsdetail/nostar.png" class="nostar"/>
+	    	</div>
+	    	<div id="btn">
+	    		<button type="button" class="mui-btn mui-btn-outlined" id="quxiao">取消</button>
+	    		<button type="button" class="mui-btn mui-btn-outlined">确认</button>
+	    	</div>
+	    </div>
+	</div>
+</body>
+<script type="text/javascript">
+	var getData1 = JSON.parse('{"getDataType":[]}');
+	var getData2 = JSON.parse('{"getDataType":[]}');
+	var getData3 = JSON.parse('{"getDataType":[]}');
+	var getData4 = JSON.parse('{"getDataType":[]}');
+	Get(ALL_ORDER,{p:1},function(data){
+		if(data)
+		{
+			for(var i=0;i<data.list.length;i++)
+			{
+				if(data.list[i].type == 1)  //未付款
+				{
+					getData1.getDataType.push(data.list[i]);
+					console.log("getData1:::"+JSON.stringify(getData1));
+				}
+				else if(data.list[i].type == 2)  //待发货
+				{
+					getData2.getDataType.push(data.list[i]);
+				}
+				else if(data.list[i].type == 3)  //待收货
+				{
+					getData3.getDataType.push(data.list[i]);
+				}
+				else if(data.list[i].type == 5)  //待评价
+				{
+					getData4.getDataType.push(data.list[i]);
+				}
+			}
+		}
+		
+		if(getData1)
+		{
+			var item1Html = Handlebars.compile($("#item1Html").html());
+			$("#item1").html(item1Html(getData1));
+		}
+		if(getData2)
+		{
+			var item2mobileHtml = Handlebars.compile($("#item2mobileHtml").html());
+			$("#item2mobile").html(item2mobileHtml(getData2));
+		}
+		if(getData3)
+		{
+			var item3mobileHtml = Handlebars.compile($("#item3mobileHtml").html());
+			$("#item3mobile").html(item3mobileHtml(getData3));
+		}
+		if(getData4)
+		{
+			var item4mobileHtml = Handlebars.compile($("#item4mobileHtml").html());
+			$("#item4mobile").html(item4mobileHtml(getData4));
+		}
+	});
+
+	//评论按钮点击事件
+	Click("commentBtn",function(){
+		$("#commentDiv").css("display","block");
+	});
+	
+	//取消评论点击事件
+	Click("quxiao",function(){
+		$("#commentDiv").css("display","none");
+	});
+	
+	/*控制星星的点击事件*/
+	var index = true;
+	mui("#score img.nostar").each(function(shu)
+	{
+		$(this).click(function()
+		{
+			if(index)
+			{
+				index=false;
+				for(var i=0;i<=shu+1;i++)
+				{
+					/*$(this).addClass("star");*/
+					$("#score img.nostar:nth-child("+(i+1)+")").addClass("star");
+					
+				}
+			}else{
+				index=true;
+				for(var j=shu;j<5;j++)
+				{
+					$("#score img.nostar:nth-child("+(j+2)+")").removeClass("star");
+				}
+			}
+		})
+	})
+	
+	
+</script>
+</html>

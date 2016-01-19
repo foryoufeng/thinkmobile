@@ -1,0 +1,46 @@
+.mui-content .receiveInfo{width: 100%; height: 100px; background: #fff; margin-top: 15px; position: relative;}
+.mui-content .receiveInfo .receiveInfoLeft{width: 85%; height: 80%; position: absolute; top:10%; left: 10px; float: left;}
+.mui-content .receiveInfo .receiveInfoLeft h3#receivePeople,.mui-content .receiveInfo .receiveInfoLeft h3#phone{font-weight: normal; font-size: 1rem; line-height: 25px; float: left; width: 55%; text-overflow: ellipsis; overflow: hidden; white-space:nowrap;}
+.mui-content .receiveInfo .receiveInfoLeft h3#phone{float: right; width: 45%; text-align: right;}
+.mui-content .receiveInfo .receiveInfoLeft #address{width: 100%; height: 45px; clear: both; position: relative;}
+.mui-content .receiveInfo .receiveInfoLeft #address #line{width: 3px; height: 35px; background: #f6a900; position: absolute; top: 5px;}
+.mui-content .receiveInfo .receiveInfoLeft #address h4{font-weight: normal; font-size: 0.8rem; height: 40px; line-height: 20px; overflow: hidden; word-break: break-word; position: absolute; top: -3px; left: 7px;}
+.mui-content .receiveInfo span{float: right; line-height: 100px; margin-right: 8px;}
+
+.mui-content .payment{width: 100%; margin-top: 15px; background: #fff; height: auto;}
+.mui-content .payment .mui-card{margin: 0; border-radius: 0;}
+.mui-content .payment .mui-card ul li{height: 70px; line-height: 25px; font-size: 1rem;  padding: 10px 10px;}
+.mui-content .payment .mui-card ul li span{color: #999999; font-size: 0.8rem;}
+.mui-content .payment .mui-card ul li img{width: auto; height: 80%; float: left; margin-right: 10px; margin-top: 8px;}
+.mui-content .payment .mui-card ul li input{line-height: 55px;}
+.mui-radio input[type=radio]:checked:before{color: #f69600;} 
+
+.mui-content .goodsDesc{width: 100%; height: auto; margin-top: 15px;}
+.mui-content .goodsDesc .goodsTitle{width: 100%; height: 45px; background: #fff;}
+.mui-content .goodsDesc .goodsTitle img{width: 25px; height: auto; float: left; margin: 10px;}
+.mui-content .goodsDesc .goodsTitle h4{font-weight: normal; line-height: 45px; font-size: 0.8rem;}
+.mui-content .goodsDesc .goodsInfoDesc{width:100%; height: auto;}
+.mui-content .goodsDesc .goodsInfoDesc ul{background: none;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a img{ width: 27%; margin-left: -2px; margin-right: 10px; margin-top: 2px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#title{ color: #000; font-size: 0.8rem; height: 40px; margin-left:30% ; white-space:pre-wrap; overflow: hidden;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#color{ width: 60%; font-size: 0.7rem; padding-left: 2px; line-height: 25px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#color span{margin-left: 10px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#price{font-size: 1rem; color: #f69600; line-height: 30px;}
+.mui-content .goodsDesc .goodsInfoDesc ul li a .mui-body p#price span{float: right; color: #595959;}
+
+.mui-content .goodsDesc #mode,.mui-content .goodsDesc #liuyan{width: 100%; height: 50px; background: #fff; border-bottom: 1px #e5e5e5 solid;}
+.mui-content .goodsDesc #mode h4#modeTxt,.mui-content .goodsDesc #mode h4#totalGoods,.mui-content .goodsDesc #mode h4#totlePrice,.mui-content .goodsDesc #mode h4#modeVal,.mui-content .goodsDesc #liuyan h4#liuyanTxt{width: 40%; line-height: 50px; font-size: 1rem; font-weight: normal; margin: 0 0 0 10px; float: left;}
+.mui-content .goodsDesc #mode h4#modeVal{float: right; text-align: right; font-size: 0.8rem; color: #595959;}
+.mui-content .goodsDesc #mode h4#modeVal span{font-size: 1rem; margin: 0 10px;}
+.mui-content .goodsDesc #liuyan h4#liuyanTxt{width: 25%;}
+.mui-content .goodsDesc #liuyan input{width: 70%; height: 48px; border: 0; font-size: 0.8rem; text-align: left;}
+.mui-content .goodsDesc #mode h4#totalGoods{width: 55%; text-align: right;}
+.mui-content .goodsDesc #mode h4#totlePrice{width: 35%; float: right; margin: 0;}
+.mui-content .goodsDesc #mode h4#totlePrice span,.mui-content .total span{ color: #f69600;}
+
+.mui-content .addThat{margin:20px 10px;}
+.mui-content .addThat h4{font-size: 1rem; font-weight: normal; color: #8f8f94;}
+.mui-content .addThat h4#descript{font-size: 0.8rem; font-weight: normal; line-height: 25px;}
+
+.mui-content .total{height: 55px; background: #fff; line-height: 55px; text-align: right;}
+.mui-content .total button{background: #000; border: 0; color: #fff; width: 30%; height: 100%; border-radius: 0; font-size: 1rem;}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
+		<title>我的加工信息</title>
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Index/css/myBuyInfo.css">
+	</head>
+
+	<body>
+		<div class="bannerDiv">
+			<img src="__PUBLIC__/Index/images/mybuyinfo_02.jpg" alt="我的购买信息">
+			<h4>我的加工信息</h4>
+			<div class="buySL">
+				<h2>{$count}<br><p>已加工<span>{$count}</span>件</p></h2>
+			</div>
+		</div>
+
+		<div class="buyRecords">
+			<a href="jg/log.html"><h4 class="buyRecordsTxt">加工记录</h4>
+			<span class="glyphicon glyphicon-chevron-right"></span></a>
+		</div>
+
+		<div class="buyInfo">
+			<div class="JGinfo">
+				<h5>加工信息</h5>
+				<h4>请输入您的手机号</h4>
+				<form action="" method="post">
+					<input type="text" name="tel" class="form-control userTel" placeholder="">
+					<button type="submit" class="btn btn-primary selectBtn" data-toggle="button">点击查询</button>
+				</form>
+			</div>
+			<foreach name="data" key="k" item="v">
+				<div class="buyDetails">
+					<div class="one">
+						<h5>加工时间：</h5>
+						<input type="text" class="form-control" value="{$v.ftime}" readonly="readonly">
+					</div>
+					<div class="second">
+						<div class="two">
+							<h5>产品明细：</h5>
+							<textarea type="text" class="form-control" readonly="readonly">{$v.content}</textarea>
+						</div>
+					</div>
+
+					<div class="three">
+						<div class="left">
+							<div class="one">
+								<h5>加工金额：</h5>
+								<input type="text" class="form-control" value="{$v.monay}元" readonly="readonly">
+							</div>
+							<div class="one">
+								<h5>加工进度：</h5>
+								<input type="text" class="form-control" value="{$v.jindu}" readonly="readonly">
+							</div>
+							<div class="one">
+								<h5>取货时间：</h5>
+								<input type="text" class="form-control" value="{$v.qtime}" readonly="readonly">
+							</div>
+						</div>
+						<div class="right">
+							<img src="{$v.img}">
+						</div>
+					</div>
+				</div>
+			</foreach>
+		</div>
+	</body>
+</html>

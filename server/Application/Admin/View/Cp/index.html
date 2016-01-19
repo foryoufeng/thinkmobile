@@ -1,0 +1,32 @@
+<include file="Public:header" />
+		<form class="form-inline definewidth m20" action="" method="post">
+			产品名称：
+			<input type="text" name="title" class="abc input-default" placeholder="产品名称">&nbsp;&nbsp;
+			<button type="submit" class="btn btn-primary">查询</button>
+		</form>
+		<table class="table table-bordered table-hover definewidth m10">
+			<thead>
+				<tr>
+					<th>产品id</th>
+					<th>产品编号</th>
+					<th>产品名称</th>
+					<th>产品内容</th>
+					<th>产品价格</th>
+					<th>管理操作</th>
+				</tr>
+			</thead>
+			<foreach name="data" key="k" item="v">
+				<tr>
+					<td>{$v.id}</td>
+					<td>{$v.bh}</td>
+					<td>{$v.title}</td>
+					<td><img width="100" height="100" src="{$v.content}"></td>
+					<td>{$v.monay}RMB</td>
+					<td>
+						<a href="__URL__/save/id/{$v.id}">编辑</a>
+						<a href="javascript:;" onclick="if(confirm('确定删除吗？'))location.href='__URL__/del/id/{$v.id}'">删除</a>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<include file="Public:page" />

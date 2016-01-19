@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=yes" />
+    <title>我的加工记录</title>
+    <link rel="stylesheet" href="__PUBLIC__/Index/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Index/css/myBuyRecords.css">
+    <script src="__PUBLIC__/Index/js/jquery.js"></script>
+    <script src="__PUBLIC__/Index/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="headTitle">
+    <h4>我的加工记录</h4>
+</div>
+
+<div class="recordsBigDiv">
+    <empty name="log">
+        <div class="recordsDiv">
+            没有记录
+        </div>
+        <else />
+        <volist name="log" id="vo">
+            <div class="recordsDiv">
+                <h4>加工时间：<span>{$vo.ftime}</span></h4>
+                <h4>产品明细：<span id="goodsdes">{$vo.content}</span></h4>
+                <h4>加工金额：<span>{$vo.monay}元</span></h4>
+                <h4>加工进度：<span>{$vo.jindu}</span></h4>
+            </div>
+        </volist>
+    </empty>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的收藏</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/shoucang.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的收藏</h1>
+		</header>
+		<div class="mui-content">
+			<h5 class="mui-content-padded">近1个月</h5>
+			<ul id="shoucang_1" class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-black">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+							<img class="mui-media-object mui-pull-left" src="images/shoucang/1.jpg"> 
+							<h2 class="mui-media-body">年终特惠 翡翠莲蓬型吊坠 质地清莹无瑕疵 温润剔透 造型独特年终特惠 翡翠莲蓬型吊坠 质地清莹无瑕疵 温润剔透 造型独特</h2>
+							<span class="price">￥5290</span>
+							<span class="like"></span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-black">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<img class="mui-media-object mui-pull-left" src="images/shoucang/1.jpg"> 
+						<h2 class="mui-media-body">年终特惠 翡翠莲蓬型吊坠 质地清莹无瑕疵 温润剔透 造型独特</h2>
+						<span class="price">￥5290</span>
+						<span class="like"></span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-black">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<img class="mui-media-object mui-pull-left" src="images/shoucang/1.jpg"> 
+						<h2 class="mui-media-body">年终特惠 翡翠莲蓬型吊坠 质地清莹无瑕疵 温润剔透 造型独特</h2>
+						<span class="price">￥5290</span>
+						<span class="like"></span>
+					</div>
+				</li>
+			</ul>
+			<h5 class="mui-content-padded">近2个月</h5>
+			<ul id="shoucang_2" class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-black">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<img class="mui-media-object mui-pull-left" src="images/shoucang/1.jpg"> 
+						<h2 class="mui-media-body">年终特惠 翡翠莲蓬型吊坠 质地清莹无瑕疵 温润剔透 造型独特</h2>
+						<span class="price">￥5290</span>
+						<span class="like"></span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-black">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<img class="mui-media-object mui-pull-left" src="images/shoucang/1.jpg"> 
+						<h2 class="mui-media-body">年终特惠 翡翠莲蓬型吊坠 质地清莹无瑕疵 温润剔透 造型独特</h2>
+						<span class="price">￥5290</span>
+						<span class="like"></span>
+						<span class="disable"></span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-black">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<img class="mui-media-object mui-pull-left" src="images/shoucang/1.jpg"> 
+						<h2 class="mui-media-body">年终特惠 翡翠莲蓬型吊坠 质地清莹无瑕疵 温润剔透 造型独特</h2>
+						<span class="price">￥5290</span>
+						<span class="like"></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			(function($) {
+				$('#shoucang_1').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					mui.confirm('确认删除该条收藏？', '爱宝盒消息', btnArray, function(e) {
+						if (e.index == 0) {
+							var li = elem.parentNode.parentNode;
+							li.parentNode.removeChild(li);
+						}
+					});
+				});
+				$('#shoucang_2').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					mui.confirm('确认删除该条收藏？', '爱宝盒消息', btnArray, function(e) {
+						if (e.index == 0) {
+							var li = elem.parentNode.parentNode;
+							li.parentNode.removeChild(li);
+						}
+					});
+				});
+				var btnArray = ['确认', '取消'];
+			})(mui);
+		</script>
+	</body>
+</html>

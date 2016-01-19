@@ -1,0 +1,32 @@
+<include file="Public:header" />
+<form class="navbar-form navbar-left" role="search" action="index.html" method="get">
+	<div class="form-group">
+		搜索：<input type="text" class="form-control" name="search" placeholder="新闻标题|新闻内容" value="{$search}">
+	</div>
+	<button type="submit" class="btn btn-default">查询</button>
+</form>
+		<table class="table table-bordered table-hover definewidth m10">
+			<thead>
+				<tr>
+					<th>新闻id</th>
+					<th>新闻标题</th>
+					<th>管理操作</th>
+				</tr>
+			</thead>
+			<foreach name="list" key="k" item="v">
+			<tr>
+				<td>{$v.id}</td>
+				<td>{$v.title}</td>
+				<td>
+					<a href="__URL__/save/id/{$v.id}">编辑</a>
+					<a href="javascript:;" onclick="if(confirm('确定删除吗？'))location.href='__URL__/delete/id/{$v.id}'">删除</a>
+				</td>
+			</tr>
+			</foreach>
+		</table>
+		<div class="inline pull-right page">
+			<div class="pagination">{$page}</div>
+		</div>
+	</body>
+
+</html>

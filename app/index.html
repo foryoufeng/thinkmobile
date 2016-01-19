@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    
+    
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+	    <h1 class="mui-title" id="title">专题</h1>
+	</header>
+	
+	<!--底部导航-->
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active" href="shouye.html">
+	        <!--<span class="mui-icon iconfont icon-iconfontzuanshi"></span>-->
+	        <span class="mui-tab-label shouye">专题</span>  <!--icon_Y-->
+	    </a>
+	    
+    	<a class="mui-tab-item" href="attend.html">
+	        <!--<span class="mui-icon iconfont icon-iconfontgz"></span>-->
+	        <span class="mui-tab-label shejishi">设计师</span>
+	    </a>
+	    
+	    <a class="mui-tab-item" href="fenlei.html">
+	        <!--<span class="mui-icon iconfont icon-iconfontfl"></span>-->
+	        <span class="mui-tab-label cangku">仓库</span>
+	    </a>
+	    <a class="mui-tab-item" href="buluo.html">
+	        <!--<span class="mui-icon iconfont icon-iconfontbl"></span>-->
+	        <span class="mui-tab-label PO">P&nbsp;O</span>
+	    </a>
+	    <a class="mui-tab-item" href="mine.html">
+	        <!--<span class="mui-icon iconfont icon-iconfontgr"></span>-->
+	        <span class="mui-tab-label geren">个人</span>
+	    </a>
+	</nav>
+	
+</body>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+      	mui.init({  		
+	  		preloadPages:[{
+	  			url:'shouye.html',
+	  			id:"shouye.html",
+	  			styles:{
+	  				top:'45px',
+	  				bottom:"51px"
+	  			}
+	  		}]
+	  	});
+      	/*将全部子页面封装到数组中无需放首页*/
+      	var subpages = ['shouye.html','attend.html','fenlei.html','buluo.html','mine.html'];
+      	/*设置全部的子页面距顶部45px，距底部51px*/
+      	var subpages_style={
+      		top:"45px",
+      		bottom:"51px"
+      	}
+      	
+      	var aniShow = {};
+      	
+      	/*创建子页面，默认显示首页，其他均隐藏*/
+      	mui.plusReady(function(){
+      		var self = plus.webview.currentWebview();
+      		for (var i=0; i<5; i++) {
+      			var temp={};
+      			var sub = plus.webview.create(subpages[i],subpages[i],subpages_style);
+      			if(i > 0)
+      			{
+      				sub.hide();
+      			}else{
+      				temp[subpages[i]] = 'true';
+      				mui.extend(aniShow,temp);
+      			}
+      			self.append(sub);
+      		}
+      	});
+      	
+      	/*页面创建OK，固定当前页面所对应的tab*/
+      	var activeTab = subpages[0];
+      	var title = document.getElementById("title");
+      	
+      	/*导航选中状态*/
+      	mui(".mui-bar-tab").on('tap','a',function(e){
+      		var targetTab = this.getAttribute('href');
+      		
+      		if(targetTab == activeTab)
+      		{
+      			return; 
+      		}
+      		/*更换顶部导航标题*/
+      		title.innerHTML = this.querySelector(".mui-tab-label").innerHTML;
+      		
+      		mui(".mui-tab-label").each(function(index,item){
+      			this.style.color="#555555";
+      			
+      		});
+      		this.querySelector(".mui-tab-label").style.color="#f6a900";
+      		
+      		document.querySelector("nav a.mui-tab-item span.shouye").style.background="url(images/icon_1.png) no-repeat center";
+      		document.querySelector("nav a.mui-tab-item span.shouye").style.backgroundPosition="-4px -2px";
+      		document.querySelector("nav a.mui-tab-item span.shouye").style.backgroundSize="350px 34px";
+      		
+      		if(mui.os.ios || aniShow[targetTab]){
+      			plus.webview.show(targetTab);
+      		}else{
+      			var temp = {};
+      			temp[targetTab] = 'true';
+      			mui.extend(aniShow,temp);
+      			plus.webview.show(targetTab,'fade-in',300);
+      		}
+      		
+      		plus.webview.hide(activeTab);
+      		activeTab = targetTab;
+      	});
+    </script>
+    
+ 
+</html>

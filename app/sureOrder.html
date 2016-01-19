@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>确认订单</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/sureOrder.css"/>
+    <script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/handlebars.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">确认订单</h1>
+	</header>
+	
+	<div class="mui-content">
+	    <div class="receiveInfo">
+	    	<div class="receiveInfoLeft" id="receiveInfoLeft">
+	    		<script type="text/x-handlebars-template" id="receiveInfoLeftHtml">
+	    			<h3 id="receivePeople">
+		    			收货人：{{list.address.consignee}}
+		    		</h3>
+		    		<h3 id="phone">{{list.address.mobile}}</h3>
+		    		<div id="address">
+		    			<div id="line"></div>
+		    			<h4>收货地址：{{list.address.address}}</h4>
+		    		</div>
+	    		</script>
+	    	</div>
+	    	<span class="mui-icon mui-icon-arrowright"></span>
+	    </div>
+
+		<div class="payment">
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-radio mui-right">
+						<img src="images/sureorder/so_03.png"/>微信支付<br><span>推荐安装微信5.0及以上版本</span><input name="radio" type="radio" value="wxpay">
+					</li>
+					<li class="mui-table-view-cell mui-radio mui-right">
+						<img src="images/sureorder/so_07.png"/>支付宝支付<br><span>有支付宝账号的用户</span><input name="radio" type="radio" value="alipay">
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="goodsDesc" id="goodsDesc">
+			<script type="text/x-handlebars-template" id="goodsDescHtml">
+				{{#each list.brand}}
+					<div class="goodsTitle">
+						<img src={{brand_logo}}/><h4>{{brand_name}}</h4>
+					</div>
+					
+					<div class="goodsInfoDesc">
+						<ul class="mui-table-view">
+							{{#each goods}}
+								<li class="mui-table-view-cell mui-media">
+									<a href="javascript:;">
+										<img class="mui-pull-left" src="http://123.56.44.104:81/{{goods_thumb}}">
+										<div class="mui-body">
+											<p id="title">{{goods_name}}</p>
+											<p>{{goods_attr}}</p>
+											<p id="price">￥{{goods_price}}<span>x{{goods_number}}</span></p>
+										</div>
+									</a>
+								</li>
+							{{/each}}
+						</ul>
+					</div>
+				{{/each}}
+					
+					<div id="mode">
+						<h4 id="modeTxt">配送方式</h4>
+						<h4 id="modeVal">快递12.00元<span class="mui-icon mui-icon-arrowright"></span></h4>
+					</div>
+					<div id="mode">
+						<h4 id="modeTxt">运费险</h4>
+						<h4 id="modeVal">未选择<span class="mui-icon mui-icon-arrowright"></span></h4>
+					</div>
+					<div id="liuyan">
+						<h4 id="liuyanTxt">买家留言：</h4>
+						<input type="text" placeholder="可填写您与卖家达成一致的要求">
+					</div>
+					<div id="mode">
+						<h4 id="totalGoods">共计2件商品</h4>
+						<h4 id="totlePrice">合计：<span id="totlePriceSpan">￥0</span></h4>
+					</div>
+				
+			</script>
+		</div>
+	
+		<div class="addThat">
+			<h4>补充说明</h4>
+			<h4 id="descript">定制、预售类订单，以约定时间发货</h4>
+		</div>
+		
+		<div class="total">
+			合计：<span id="goodsTotalPriceSpan">￥5920</span>
+			<button type="button" class="mui-btn mui-btn-blue" onclick="surePay()">确定</button>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	/*获取上个页面传递的商品在购物车编号*/
+	var recIdData;
+	var goodsTotalPrice;
+	var recIdStr = "";
+	var recId;
+	var addressId = "";
+	var totalPrice = 0;
+	var totalCount = 0;
+	mui.plusReady(function()
+	{
+		var self = plus.webview.currentWebview();
+		recIdData = self.recIdData;
+		goodsTotalPrice = self.goodsTotalPrice;
+		document.getElementById("goodsTotalPriceSpan").innerHTML = "￥" + goodsTotalPrice;
+		
+		for(var i=0;i<recIdData.recIdAll.length;i++)
+		{
+			recIdStr = recIdStr + recIdData.recIdAll[i].recId + "," ;
+		}
+		recId = recIdStr.substr(0,recIdStr.length-1);
+		console.log("确认订单里面的传递过来的参数recId：：："+recId);
+		
+		Get(SUREORDER_INFO,{rec_id:recId},function(data)
+		{
+			addressId = data.list.address.address_id;
+			localStorage.setItem("data",JSON.stringify(data));
+			
+			/*加载收货人信息*/
+			var receiveInfoLeftHtml = Handlebars.compile($("#receiveInfoLeftHtml").html());
+			$("#receiveInfoLeft").html(receiveInfoLeftHtml(data));
+			
+			/*加载品牌商品列表信息*/
+			var goodsDescHtml = Handlebars.compile($("#goodsDescHtml").html());
+			$("#goodsDesc").html(goodsDescHtml(data));
+			
+			var total = totalPriceFun();			
+			$("#totalGoods").html("共计"+totalCount+"件商品");
+			$("#totlePriceSpan").html("￥"+totalPrice);
+		})
+	})
+	
+	function totalPriceFun()
+	{
+		var data = JSON.parse(localStorage.getItem("data"));
+		
+		for(var n=0;n<data.list.brand.length;n++)
+		{
+			totalCount = totalCount + data.list.brand[n].count
+			totalPrice = totalPrice + data.list.brand[n].price;			
+		}
+	}
+	
+	/*确认支付       wxpay：微信支付     alipay：支付宝支付*/
+	var payStyleVal;
+	function surePay()
+	{
+		//获取支付方式
+		var payStyle = document.getElementsByName("radio");
+		for(var i=0;i<payStyle.length;i++)
+		{
+			if(payStyle[i].checked)
+			{
+				payStyleVal = payStyle[i].value;
+			}
+		}
+		
+		if(payStyleVal)
+		{
+			//生成订单传递的参数
+			var parameter = {'shipping_id':9,'address_id':addressId,'pay':payStyleVal,'rec_id':recId};
+			console.log("{shipping_id:9,address_id:"+addressId+",pay:"+payStyleVal+",rec_id:"+recId+"}");
+			Get(GENERATE_ORDER,parameter,function(data){
+				var id = data.list.id; //获取是否生成订单成功的ID
+				console.log(JSON.stringify(data));
+				if(id > 0)
+				{
+					Get(PAY,{'id':id},function(data){
+						var payCode = data.list.code;
+						if(payCode > 0)
+						{
+							//调支付宝接口
+							console.log("看一下支付接口吧");
+						}
+						else
+						{
+							mui.toast("订单生成失败！");
+						}
+					})
+				}
+			})
+		}else{
+			mui.toast("请先选择支付方式！");
+		}
+	}
+</script>
+</html>

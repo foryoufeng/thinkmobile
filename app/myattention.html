@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的关注</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/myattention.css" />
+    <script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id="title">我的关注</h1>    
+	</header>
+	<div class="mui-content">
+		<ul class="mui-table-view" id="attendUL"></ul>
+	</div>
+</body>
+<script type="text/javascript">
+	var pid = 1;
+	Get(MY_ATTEND,{p:pid},function(data)
+	{
+		if(data)
+		{
+			var attendUL = $("#attendUL");
+			$.each(data.list,function(i,datas){
+				var logoUrl = BRANDLOGO + datas.brand_logo;
+				var liHtml = '<li class="mui-table-view-cell mui-media">'+
+						        '<a href="javascript:;" class="mui-navigate-right">'+
+						            '<img class="mui-media-object mui-pull-left" src="'+logoUrl+'">'+
+						            '<div class="mui-media-body">'+datas.brand_name+'<span class="mui-badge mui-badge-warning">粉丝'+datas.fans+'</span>'+
+						                '<p class="mui-ellipsis">'+datas.brand_desc+'</p>'+
+						            '</div>'+
+						        '</a>'+
+						    '</li>';
+				attendUL.append(liHtml);
+			});
+		}
+	});
+</script>
+</html>

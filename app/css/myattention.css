@@ -1,0 +1,17 @@
+.mui-content>.mui-table-view:first-child {
+    margin-top: 0px;
+}
+/*角标*/
+.mui-badge {
+    border-radius: 0;
+    margin-left: 10px;
+}
+.mui-table-view-cell:after {
+    left: 67px;
+
+}
+
+.mui-media-body{ font-size: 1.1rem;  color: #121212; line-height: 25px;}
+.mui-ellipsis{ font-size: 0.9rem; color: #595959;}
+
+.mui-table-view-cell img{width: 25px; height: 25px;  border-radius: 100%;}

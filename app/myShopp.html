@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/myShopp.css"/>
+    <script src="js/mui.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style>
+		.mui-bar-popover {
+			width: 30%;
+		}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id="title">购物车<span>[3]</span></h1>
+	    <div class="headright">
+	    	<p class="headerp1">完成</p>
+	    	<a class="mui-tab-item" href="#Popover_2">●●●</a>
+	    </div>	    
+	</header>
+	<div id="Popover_2" class="mui-popover mui-bar-popover">
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell"><a href="#">消息中心</a>
+				</li>
+				<li class="mui-table-view-cell"><a href="#">返回中心</a>
+				</li>
+			</ul>
+	</div>
+	<div class="mui-content" id="cart">
+	<div class="gouwuchecontent maijia0">
+		<div class="gouwuchetop">
+			<div class="mui-input-row mui-checkbox mui-left">
+				<input name="checkbox1" value="Item 1" type="checkbox" id="selectOneAll0" onchange="selectOneAll(0)">
+					<div class="biaoti">
+						<img class="mui-media-object mui-pull-left" src="images/gouwuche/ren2_07.jpg" width="6%"><h4>MMC 喵喵chan</h4>
+					</div>
+			</div>
+		</div>
+		<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<div class="mui-input-row mui-checkbox mui-left">
+				<input name="checkbox2" value="Item 1" type="checkbox" id="fuxuankuang" onchange="selectOne(0)">
+			<div class="gwccontent">
+				<a href="javascript:;">
+				<img class="mui-media-object mui-pull-left" src="images/gouwuche/gwc_03.jpg">
+				<div class="mui-media-body">
+					 <div id="totalNumber" class="mui-numbox" data-numbox-min='0'> 
+	    				<button type="button" class="mui-btn mui-btn-numbox-minus">-</button>
+	    				<input type="number" class="mui-input-numbox" id="buyNumber">
+	    				<button type="button" class="mui-btn mui-btn-numbox-plus">+</button>
+	    			</div>
+					<div class="yanse">
+						<p class='type'>颜色分类：水绿 尺寸：M</p>
+						<p class="tubiao"><img src="images/gouwuche/tubiao_03.jpg"></p>
+					</div>
+				</div>
+			</a>
+			</div>	
+			</div>
+		</li>
+		</ul>
+		</div>
+		
+		<div class="gouwuchecontent maijia1">
+			<div class="gouwuchetop">
+				<div class="mui-input-row mui-checkbox mui-left">
+  					<input name="checkbox1" value="Item 1" type="checkbox" id="selectOneAll1" onchange="selectOneAll(1)">
+  						<div class="biaoti">
+							<img class="mui-media-object mui-pull-left" src="images/gouwuche/ren2_07.jpg" width="6%"><h4>MMC 喵喵chan</h4>
+						</div>
+				</div>
+			</div>
+			<ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-input-row mui-checkbox mui-left">
+  					<input name="checkbox2" value="Item 1" type="checkbox" id="fuxuankuang" onchange="selectOne(1)">
+  					<div class="gwccontent">
+  					<a href="javascript:;">
+					<img class="mui-media-object mui-pull-left" src="images/gouwuche/gwc_03.jpg">
+					<div class="mui-media-body">
+					 <div id="totalNumber" class="mui-numbox" data-numbox-min='0'> 
+	    				<button type="button" class="mui-btn mui-btn-numbox-minus">-</button>
+	    				<input type="number" class="mui-input-numbox" id="buyNumber">
+	    				<button type="button" class="mui-btn mui-btn-numbox-plus">+</button>
+	    			</div>
+					<div class="yanse">
+						<p class='type'>颜色分类：水绿 尺寸：M</p>
+						<p class="tubiao"><img src="images/gouwuche/tubiao_03.jpg"></p>
+					</div>
+				</div>
+				</a>
+  				</div>	
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-input-row mui-checkbox mui-left">
+  					<input name="checkbox2" value="Item 1" type="checkbox" id="fuxuankuang" onchange="selectOne(1)">
+  					<div class="gwccontent">
+  					<a href="javascript:;">
+					<img class="mui-media-object mui-pull-left" src="images/gouwuche/gwc_03.jpg">
+					<div class="mui-media-body">
+					 <div id="totalNumber" class="mui-numbox" data-numbox-min='0'> 
+	    				<button type="button" class="mui-btn mui-btn-numbox-minus">-</button>
+	    				<input type="number" class="mui-input-numbox" id="buyNumber">
+	    				<button type="button" class="mui-btn mui-btn-numbox-plus">+</button>
+	    			</div>
+					<div class="yanse">
+						<p class='type'>颜色分类：水绿 尺寸：M</p>
+						<p class="tubiao"><img src="images/gouwuche/tubiao_03.jpg"></p>
+					</div>
+				</div>
+				</a>
+  				</div>	
+				</div>
+			</li>
+			</ul>
+		</div>
+		
+	</div>
+	
+	<footer class="mui-bar mui-bar-tab">
+	    <div class="gouwuchefooter">
+				<div id="zhifu" class="mui-checkbox mui-left">
+  					<input name="checkbox1" value="Item 1" type="checkbox" style="top: 0px;" id="selectAll" onchange="selectAll()">
+  					<label>全选</label>
+				</div>
+				
+				<button class="buttonjiesuan" onclick="opensureOrder()">结算<span>[1]</span></button>
+				<button class="shoucang" onclick="opensureOrder()">移至收藏</button>
+			</div>
+	</footer>
+</body>
+<script>
+	var index=0;
+	function selectAll()
+	{
+		if(index==0)
+		{
+			mui("input[type=checkbox]").each(function(){
+					this.checked=true;
+					index=1;
+			})
+		}else
+		{
+			mui("input[type=checkbox]").each(function(){
+					this.checked=false;
+					index=0;
+			})
+		}
+	
+	}
+	var objIndex=0;
+	function selectOneAll(obj)
+	{
+		if(objIndex==0)
+		{
+			mui(".maijia"+obj+" input[type=checkbox]").each(function(){
+					this.checked=true;
+					objIndex=1;
+			})
+		}else
+		{
+			document.getElementById("selectAll").checked=false;
+				index=0;
+			mui(".maijia"+obj+" input[type=checkbox]").each(function(){
+					this.checked=false;
+					objIndex=0;
+			})
+		}
+	}
+	function selectOne(oneIndex)
+	{
+		document.getElementById("selectAll").checked=false;
+		document.getElementById("selectOneAll"+oneIndex).checked=false;
+		index=0;
+		objIndex=0;
+	}
+</script>
+</html>
