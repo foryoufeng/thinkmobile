@@ -1,5 +1,9 @@
 ## thinkmobile
-thinkmobile是数据库和后台基于EcShop，Api基于ThinkPHP，前段基于mui的移动App应用（不要问我为什么都是基于，因为你懂得）
+*  thinkmobile是数据库和后台基于EcShop，Api基于ThinkPHP，前端基于mui的移动App应用（不要问我为什么都是基于，因为你懂得）
+
+## 程序说明
+*  server文件夹是基于ThinkPHP开发的api程序
+*  app文件夹是基于mui开发的app程序
 
 ## 程序安装
 
